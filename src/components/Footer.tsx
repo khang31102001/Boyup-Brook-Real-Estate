@@ -34,7 +34,7 @@ const Footer = () => {
             <p className="text-gray-300 mb-4">
               Discover the perfect blend of rural tranquility and modern convenience in Boyup Brook.
             </p>
-            <div className="flex space-x-4">
+            {/* <div className="flex space-x-4">
               {socialLinks.map((social, index) => (
                 <motion.a
                   key={index}
@@ -46,7 +46,7 @@ const Footer = () => {
                   <i className={social.icon}></i>
                 </motion.a>
               ))}
-            </div>
+            </div> */}
           </div>
 
           {/* Quick Links */}

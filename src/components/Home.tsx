@@ -373,7 +373,7 @@ export default function Home() {
       id="home"
     >
       {/* Main Content - All info in one blur box, responsive */}
-      <div className="flex w-full justify-center xl:justify-start items-center xl:items-start z-10 select-none px-0 xl:px-10">
+      <div className="flex w-full justify-center xl:justify-start items-center xl:items-start z-10 select-none px-0 xl:px-10 mb-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -404,7 +404,7 @@ export default function Home() {
               <i className="fas fa-phone text-emerald-300"></i>
               0457 230 191
             </a>
-            <div className="flex items-center gap-4 text-lg sm:text-xl text-white justify-center sm:justify-start">
+            {/* <div className="flex items-center gap-4 text-lg sm:text-xl text-white justify-center sm:justify-start">
               {socialLinks.map((social) => (
                 <a
                   key={social.name}
@@ -417,7 +417,7 @@ export default function Home() {
                   <i className={social.icon}></i>
                 </a>
               ))}
-            </div>
+            </div> */}
             <a href="mailto:eaglescreensjr@gmail.com" className="flex items-center gap-2 text-white font-medium hover:text-emerald-200 transition-colors text-base sm:text-lg justify-center sm:justify-start">
               <i className="fas fa-envelope text-emerald-300"></i>
               eaglescreensjr@gmail.com
@@ -427,7 +427,7 @@ export default function Home() {
       </div>
 
       {/* Group Navigation */}
-      <div className="absolute top-24  xl:top-4 left-1/2 -translate-x-1/2 z-10 md:z-50 flex gap-4">
+      {/* <div className="absolute top-24  xl:top-4 left-1/2 -translate-x-1/2 z-10 md:z-50 flex gap-4">
         {Object.keys(propertyGroups).map((group) => (
           <button
             key={group}
@@ -441,7 +441,7 @@ export default function Home() {
             {group.charAt(0).toUpperCase() + group.slice(1)}
           </button>
         ))}
-      </div>
+      </div> */}
 
       {/* Content Overlay */}
       <div className="absolute inset-0 -z-1">
