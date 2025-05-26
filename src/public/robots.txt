@@ -1,0 +1,19 @@
+
+# robots.txt for Boyup Brook Acreage For Sale
+# Author: John Rogers 
+# Website: https://riverslane.org
+
+User-agent: *
+Disallow:
+
+# Allow crawling of all resources
+Allow: /*.js$
+Allow: /*.css$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.gif$
+Allow: /$
+
+# Specify the location of your sitemap
+Sitemap: https://riverslane.org/sitemap.xml
