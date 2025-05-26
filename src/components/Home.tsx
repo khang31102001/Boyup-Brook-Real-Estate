@@ -12,12 +12,12 @@ import img1 from '../public/img/img1.jpg'
 import { heroImages } from '../constants/images';
 
 
-const socialLinks = [
-  { name: 'facebook', icon: 'fab fa-facebook-f', link: 'https://www.facebook.com/profile.php?id=100088916504867' },
-  { name: 'instagram', icon: 'fab fa-instagram', link: 'https://www.instagram.com/boyupbrook/' },
-  { name: 'twitter', icon: 'fab fa-twitter', link: 'https://twitter.com/boyupbrook' },
-  { name: 'phone', icon: 'fas fa-phone', link: 'tel:0457230191' }
-];
+// const socialLinks = [
+//   { name: 'facebook', icon: 'fab fa-facebook-f', link: 'https://www.facebook.com/profile.php?id=100088916504867' },
+//   { name: 'instagram', icon: 'fab fa-instagram', link: 'https://www.instagram.com/boyupbrook/' },
+//   { name: 'twitter', icon: 'fab fa-twitter', link: 'https://twitter.com/boyupbrook' },
+//   { name: 'phone', icon: 'fas fa-phone', link: 'tel:0457230191' }
+// ];
 
 interface Property {
   src: string;
@@ -363,7 +363,8 @@ const propertyGroups = {
 
 export default function Home() {
   const [selectedProperty, setSelectedProperty] = useState<Property | null>(null);
-  const [activeGroup, setActiveGroup] = useState<'hills' | 'rivers' | 'outdoors'>('hills');
+  const [activeGroup, _setActiveGroup] = useState<'hills' | 'rivers' | 'outdoors'>('hills');
+
   const [showReasons, setShowReasons] = useState(false);
 
   return (
@@ -373,7 +374,7 @@ export default function Home() {
       id="home"
     >
       {/* Main Content - All info in one blur box, responsive */}
-      <div className="flex w-full justify-center xl:justify-start items-center xl:items-start z-10 select-none px-0 xl:px-10 mb-16">
+      <div className="flex w-full justify-center xl:justify-start items-center xl:items-start z-10 select-none px-0 xl:px-10 mb-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
