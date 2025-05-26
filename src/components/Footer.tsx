@@ -17,12 +17,12 @@ const Footer = () => {
     { icon: 'fas fa-envelope', text: 'eaglescreensjr@gmail.com' }
   ];
 
-  const socialLinks = [
-    { icon: 'fab fa-facebook-f', href: 'https://www.facebook.com/profile.php?id=100088916504867' },
-    { icon: 'fab fa-instagram', href: 'https://www.instagram.com/boyupbrook/' },
-    { icon: 'fab fa-twitter', href: 'https://twitter.com/boyupbrook' },
-    { icon: 'fab fa-linkedin-in', href: 'https://www.linkedin.com/company/boyup-brook' }
-  ];
+  // const socialLinks = [
+  //   { icon: 'fab fa-facebook-f', href: 'https://www.facebook.com/profile.php?id=100088916504867' },
+  //   { icon: 'fab fa-instagram', href: 'https://www.instagram.com/boyupbrook/' },
+  //   { icon: 'fab fa-twitter', href: 'https://twitter.com/boyupbrook' },
+  //   { icon: 'fab fa-linkedin-in', href: 'https://www.linkedin.com/company/boyup-brook' }
+  // ];
 
   return (
     <footer className="bg-emerald-800 text-white pt-16 pb-8">

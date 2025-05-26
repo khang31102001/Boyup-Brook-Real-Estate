@@ -1,38 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Charset & Viewport -->
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="./src/public/img/fav.png" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- SEO Meta Tags -->
+    <!-- Title & SEO -->
     <title>Boyup Brook Acreage For Sale | Scenic Rural Land in Western Australia</title>
     <meta name="description" content="Explore beautiful acreage for sale in Boyup Brook, Western Australia. Ideal for farming, living, or investment with stunning countryside views." />
     <meta name="keywords" content="Boyup Brook acreage for sale, land in Western Australia, rural property, farming land, WA real estate" />
     <meta name="author" content="John Rogers" />
     <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://riverslane.org/" />
+
+    <!-- Theme & Web App -->
+    <meta name="theme-color" content="#047857" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Boyup Brook Acreage" />
+
+    <!-- Favicon & Manifest -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png" />
+    <link rel="manifest" href="/favicon_io/site.webmanifest" />
+
+    <!-- Google Site Verification -->
     <meta name="google-site-verification" content="rBEKzYpP2m4dNvbchHhHmkfnAijDWWwPqyC-WCMBfxk" />
 
-    <!-- Open Graph for Social Sharing -->
+    <!-- Open Graph / Facebook -->
     <meta property="og:title" content="Boyup Brook Acreage For Sale" />
     <meta property="og:description" content="Beautiful rural land for sale in Boyup Brook, ideal for farming, lifestyle, or investment." />
-    <meta property="og:image" content="https://riverslane.org/path-to-og-image.jpg" />
+    <meta property="og:image" content="https://riverslane.org/img-seo.jpg" />
     <meta property="og:url" content="https://riverslane.org" />
     <meta property="og:type" content="website" />
 
-    <!-- Twitter Card for Twitter Sharing -->
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Boyup Brook Acreage For Sale" />
     <meta name="twitter:description" content="Discover scenic rural acreage for sale in Boyup Brook, WA." />
-    <meta name="twitter:image" content="https://riverslane.org/path-to-og-image.jpg" />
+    <meta name="twitter:image" content="https://riverslane.org/img-seo.jpg" />
 
     <!-- Icons & Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet" />
+
+    <!-- Structured Data (Schema.org) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "RealEstateAgent",
+        "name": "Boyup Brook Acreage",
+        "url": "https://riverslane.org",
+        "logo": "https://riverslane.org/fav.png",
+        "description": "Explore beautiful acreage for sale in Boyup Brook, ideal for farming, lifestyle, or investment.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Boyup Brook",
+          "addressRegion": "WA",
+          "addressCountry": "Australia"
+        },
+        "telephone": "+0457230191"
+      }
+    </script>
+
+    <!-- Google Analytics  -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXX');
+    </script>
   </head>
+
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
-
