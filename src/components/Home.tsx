@@ -426,7 +426,7 @@ export default function Home() {
         </motion.div>
       </div>
 
-      {/* Group Navigation */}
+      {/* Group Navigation  hihi*/}
       {/* <div className="absolute top-24  xl:top-4 left-1/2 -translate-x-1/2 z-10 md:z-50 flex gap-4">
         {Object.keys(propertyGroups).map((group) => (
           <button
