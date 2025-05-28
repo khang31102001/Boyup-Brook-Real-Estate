@@ -31,7 +31,7 @@ const ScrollToTop = () => {
     <div className="fixed z-[100] right-2 md:right-8 bottom-2 md:bottom-8 flex flex-col gap-4">
       <div className="relative group">
         <a 
-          href="tel:+61123456789"
+          href="tel:+0457 230 191"
           className={`bg-emerald-900 text-white p-3 rounded-full shadow-lg transition-all duration-300 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
           } hover:bg-emerald-800 flex items-center justify-center`}
