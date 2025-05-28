@@ -10,7 +10,7 @@ const Header = () => {
       setScrolled(window.scrollY > 0);
 
       // Check which section is in view
-      const sections = ['home', 'about', 'discover', 'places', 'contact'];
+      const sections = ['home', 'description', 'summary', 'contact']; // , 'discover' ,'places'
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
@@ -29,9 +29,9 @@ const Header = () => {
 
   const navLinks = [
     { href: '#home', label: 'Home' },
-    { href: '#about', label: 'About' },
-    { href: '#discover', label: 'Discover' },
-    { href: '#places', label: 'Places' },
+    { href: '#description', label: 'Description' },
+    // { href: '#discover', label: 'Discover' },
+    { href: '#summary', label: 'Summary' },
     { href: '#contact', label: 'Contact' }
   ];
 

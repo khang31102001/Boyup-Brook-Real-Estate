@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination } from 'swiper/modules';
+import { Pagination } from 'swiper/modules';  
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
@@ -158,7 +158,8 @@ const Discover = () => {
   }, [allImages.length]);
 
   return (
-    <section className="relative py-8 sm:py-12 xl:pt-24 px-3 sm:px-4 md:px-8 lg:px-12 bg-white" id="discover" aria-label="Discover The Most Attractive Places">
+    <section className="relative xl:pt-24 px-3 sm:px-4 md:px-8 lg:px-12 bg-white" id="discover" aria-label="Discover The Most Attractive Places"> {/*py-8 sm:py-12*/}
+
       <div className="max-w-4xl mx-auto flex flex-col items-center justify-center gap-6 sm:gap-8">
         <motion.h1 
           initial={{ opacity: 0, y: -20 }}
@@ -166,7 +167,7 @@ const Discover = () => {
           transition={{ duration: 0.5 }}
           className="text-2xl sm:text-3xl md:text-5xl font-bold text-cyan-900 text-center"
         >
-          Discover
+          Experience Boyup Brook Acreage
         </motion.h1>
         <motion.p 
           initial={{ opacity: 0, y: 20 }}
@@ -176,7 +177,7 @@ const Discover = () => {
         >
           Comprising 301 acres (121 hectares), this beautiful rural property is located between Boyup Brook and Bridgetown. It boasts long, private, exclusive frontage to the Blackwood River, wide open fields or treed river flats offering an exceptional opportunity to develop a range of rural activities or simply to retain as your own very private retreat, far from the masses.
         </motion.p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 w-full">
+        {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 w-full">
           {places.map((place, idx) => (
             <motion.div
               key={idx}
@@ -207,7 +208,7 @@ const Discover = () => {
               </div>
             </motion.div>
           ))}
-        </div>
+        </div> */}
       </div>
 
       {/* New Image Showcase Box */}
@@ -215,18 +216,18 @@ const Discover = () => {
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 0.2 }}
-        className="hidden sm:block max-w-6xl mx-auto mt-16 sm:mt-24 lg:mt-32 mb-8 sm:mb-16"
+        className="hidden sm:block max-w-6xl mx-auto mt-16 sm:mt-24 lg:mt-10 mb-8 sm:mb-16"
       >
         <div className="relative w-full bg-gradient-to-br from-cyan-500 via-emerald-500 to-blue-600 p-[2px] rounded-xl sm:rounded-2xl overflow-hidden shadow-xl">
           <div className="relative bg-white rounded-xl sm:rounded-2xl p-4 sm:p-8 md:p-12 overflow-hidden">
-            {/* Title */}
+            Title
             <motion.h2 
               className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-gray-900 mb-6 sm:mb-8"
               initial={{ opacity: 0, y: -20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              Explore Our Beautiful Property
+              {/* Explore Our Beautiful Property */} Nature’s Canvas: A Visual Story
             </motion.h2>
 
             {/* Image Grid */}
@@ -357,6 +358,19 @@ const Discover = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
                       </svg>
                       <span className="text-white font-medium text-sm sm:text-base">Private Sale</span>
+                    </motion.div>
+                      
+                       {/* new Price */}
+                      <motion.div
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.4 }}
+                      className="flex items-center gap-1.5 sm:gap-2 bg-lime-500/90 rounded-lg px-2 sm:px-3 py-1 sm:py-1.5"
+                    >
+                      <svg className="w-8 h-8 sm:w-7 sm:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}  d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8v8m0-8c0-1.105.895-2 2-2m-2 10c-1.105 0-2 .895-2 2" />
+                      </svg>
+                      <span className="text-white font-medium text-sm sm:text-base">Asking price is $830000</span>
                     </motion.div>
                   </div>
 

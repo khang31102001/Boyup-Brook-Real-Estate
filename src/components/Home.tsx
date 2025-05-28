@@ -398,7 +398,7 @@ export default function Home() {
           <h1 className="text-white text-4xl sm:text-4xl md:text-5xl font-extrabold leading-tight text-center xl:text-left">
             Explore <br />
             <span className="text-emerald-200">Boyup Brook Acreage</span> <br />
-            For Sale
+            {/* For Sale */}
           </h1>
           <div className="flex flex-col xl:items-start items-center gap-3 sm:gap-6 mt-2 w-full justify-center sm:justify-start">
             <a href="tel:0457230191" className="flex items-center gap-2 text-white font-medium hover:text-emerald-200 transition-colors text-base sm:text-lg justify-center sm:justify-start">
@@ -511,7 +511,7 @@ export default function Home() {
                     {property.description}
                   </motion.p>
                   <div className="flex justify-center md:justify-start mb-12 md:mb-0">
-        <motion.button 
+        {/* <motion.button 
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.8, delay: 0.6 }}
@@ -519,7 +519,7 @@ export default function Home() {
                     className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2 rounded-full transition-colors duration-300 "
                   >
                     View Details
-        </motion.button>
+        </motion.button> */}
                   </div>
                 </div>
               </div>

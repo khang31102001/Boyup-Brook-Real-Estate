@@ -7,7 +7,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { heroImages } from '../constants/images';
 
-const places = [
+const summary = [
   {
     name: 'River Front Area',
     country: 'Western Australia',
@@ -88,12 +88,12 @@ const cardVariants = {
   }
 };
 
-export default function Places() {
-  const [selectedPlace, setSelectedPlace] = useState<typeof places[0] | null>(null);
+export default function Summary() {
+  const [selectedPlace, setSelectedPlace] = useState<typeof summary[0] | null>(null);
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
 
   return (
-    <section className="relative py-16 xl:pt-32 px-4 md:px-12 bg-gradient-to-b from-emerald-50 via-white to-cyan-50" id="places">
+    <section className="relative py-16 xl:pt-32 px-4 md:px-12 bg-gradient-to-b from-emerald-50 via-white to-cyan-50" id="summary">
       <div className="max-w-5xl mx-auto px-4 flex flex-col items-center justify-center gap-8">
         <motion.h2 
           initial={{ opacity: 0, y: -50 }}
@@ -101,7 +101,7 @@ export default function Places() {
           transition={{ duration: 0.6 }}
           className="text-3xl md:text-5xl font-bold text-cyan-900 text-center"
         >
-          Places
+          Summary
         </motion.h2>
         <motion.p 
           initial={{ opacity: 0 }}
@@ -118,7 +118,7 @@ export default function Places() {
           viewport={{ once: true }}
           className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 justify-items-center"
         >
-          {places.map((place) => (
+          {summary.map((place) => (
             <motion.div
               key={place.name}
               variants={cardVariants}
