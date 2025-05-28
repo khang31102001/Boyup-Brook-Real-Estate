@@ -27,11 +27,11 @@ const Footer = () => {
   return (
     <footer className="bg-emerald-800 text-white pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-48 mb-12">
           {/* About Section */}
           <div>
             <h3 className="text-h2 font-bold mb-4">Boyup Brook</h3>
-            <p className="text-gray-300 mb-4">
+            <p className=" block text-gray-300 mb-4">
               Discover the perfect blend of rural tranquility and modern convenience in Boyup Brook.
             </p>
             {/* <div className="flex space-x-4">
@@ -87,7 +87,7 @@ const Footer = () => {
           </div>
 
           {/* Newsletter */}
-          <div>
+          {/* <div>
             <h3 className="text-h3 font-semibold mb-4">Newsletter</h3>
             <p className="text-gray-300 mb-4">
               Subscribe to our newsletter for updates and exclusive offers.
@@ -107,7 +107,8 @@ const Footer = () => {
                 Subscribe
               </motion.button>
             </form>
-          </div>
+          </div> */}
+
         </div>
 
         {/* Copyright */}

@@ -3,20 +3,26 @@ import { motion } from 'framer-motion';
 // import BounceCards from './BounceCards';
 import Discover from './Discover'; 
 
-// Import images
-// import img1 from '../public/img/img1.jpg'
-// import img2 from '../public/img/img2.jpg'
-// import img3 from '../public/img/img3.jpg'
-// import img4 from '../public/img/img4.jpg'
-// import img5 from '../public/img/img5.jpg'
+import img1 from '../public/img/img1.jpg'
+import img2 from '../public/img/img2.jpg'
+import img3 from '../public/img/img3.jpg'
+import img4 from '../public/img/img4.jpg'
+import img5 from '../public/img/img5.jpg'
 
 const Description = () => {
   // Actual property measurements and features
-  const landInfo = [
-    { value: 301, label: 'Acres', desc: 'Total land area (301 acres)' },
-    { value: 1500, label: 'River Frontage', desc: 'Blackwood River frontage' },
-    { value: 3, label: 'Distinct Areas', desc: 'River, Hills & Farm zones' },
-    { value: 1, label: 'House', desc: 'Traditional timber house' },
+  // const landInfo = [
+  //   { value: 301, label: '121 hectares approx', desc: 'Total land area (301 acres)' },
+  //   { value: 2000 , label: 'kilometres(approx) River Frontage', desc: 'Blackwood River frontage' },
+  //   { value: 2, label: 'Distinct Areas', desc: 'River, Hills & Farm zones' },
+  //   { value: 1, label: '3 Bay', desc: 'Modern shed' },
+  // ];
+
+   const landInfo = [
+    { value: 301, label: '121 hectares approx', desc: 'Total land area (301 acres)' },
+    { value: 2000 , label: '2 kilometres (approx) River Frontage', desc: 'Blackwood River frontage' },
+    { value: 2, label: 'Distinct Areas', desc: 'River, Hills & Farm zones' },
+    { value: 1, label: '3 Bay', desc: 'Modern shed' },
   ];
 
   function useCountUp(end: number, duration = 1.5): number {
@@ -72,7 +78,7 @@ const Description = () => {
           transition={{ duration: 0.6 }}
           className="text-4xl lg:text-5xl font-bold text-cyan-900 text-center"
         >
-          Your Opportunity to Own Prime Land in Boyup Brook, WA
+          301 Acres (Approx. 121 hectares) - Your Opportunity to Own Prime Rural Property near Boyup Brook, WA
         </motion.h1>  
 
         <motion.p 
@@ -81,12 +87,12 @@ const Description = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-normal text-gray-700 max-w-3xl mx-auto text-justify px-0 md:px-4"
         >
-          Own an expansive 301-acre property (over 1.2 million square meters) in Boyup Brook – the heart of Western Australia's Southwest. This remarkable estate features diverse landscapes: the scenic Blackwood River, gentle hills, open pastures, natural bushland, and farming areas. It's an ideal setting for peaceful living, family bonding, outdoor activities, and potential agricultural or eco-tourism development.
+          Own an expansive 301-acre property between Boyup Brook and Bridgetown – the heart of Western Australia's Southwest. This remarkable property features diverse landscapes: long private frontage to the scenic Blackwood River, gentle, rolling hills, open pastures, natural bushland, and farming areas. It's an ideal setting for peaceful living, family bonding, outdoor activities,  agricultural or eco-tourism development...or all of the above
         </motion.p>
 
         <ul className="text-gray-700 text-base max-w-3xl mx-auto mt-2 mb-4 list-disc list-inside">
-          <li><b>Family Heritage</b>: This land has been cherished through generations, preserving memories and traditional activities including camping, canoeing, sports, bonfires, and wildlife observation.</li>
-          <li><b>Landscape & Amenities</b>: River frontage, hills, bushland, pastures, timber house, sheds, walking trails, camping areas, and fruit orchards.</li>
+          <li><b>Family Heritage</b>: This land has been cherished, preserving memories and traditional activities including camping, canoeing, sports, bonfires, and wildlife observation.</li>
+          <li><b>Landscape & Amenities</b>: Long river frontage, hills, bushland, pastures, shed, walking trails, camping areas</li>
           <li><b>Development Potential</b>: Suitable for farming, retreat development, eco-tourism ventures, or long-term investment.</li>
         </ul>
 
