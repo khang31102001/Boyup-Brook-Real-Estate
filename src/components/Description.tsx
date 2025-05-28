@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import BounceCards from './BounceCards';
+import Discover from './Discover'; 
 
+// Import images
 import img1 from '../public/img/img1.jpg'
 import img2 from '../public/img/img2.jpg'
 import img3 from '../public/img/img3.jpg'
 import img4 from '../public/img/img4.jpg'
 import img5 from '../public/img/img5.jpg'
 
-const About = () => {
+const Description = () => {
   // Actual property measurements and features
   const landInfo = [
     { value: 301, label: 'Acres', desc: 'Total land area (301 acres)' },
@@ -52,14 +54,16 @@ const About = () => {
   ];
 
   return (
+    
     <motion.section
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
-      className="relative py-16 xl:py-32 px-4 md:px-12"
-      id="about"
+      className="relative py-8 xl:py-16 px-4 md:px-12" //giam 1 nua py
+      id="description"
       aria-label="Boyup Brook acreage for sale"
     >
+     
       <div className="max-w-5xl mx-auto flex flex-col items-center justify-center gap-4 xl:gap-12">
         {/* Title */}
         <motion.h1 
@@ -68,8 +72,8 @@ const About = () => {
           transition={{ duration: 0.6 }}
           className="text-4xl lg:text-5xl font-bold text-cyan-900 text-center"
         >
-          301 Acres – Your Opportunity to Own Prime Land in Boyup Brook, WA
-        </motion.h1>
+          Your Opportunity to Own Prime Land in Boyup Brook, WA
+        </motion.h1>  
 
         <motion.p 
           initial={{ opacity: 0, y: 20 }}
@@ -118,7 +122,8 @@ const About = () => {
             );
           })}
         </div>
-        {/* Gallery layout */}
+         <Discover/>
+        {/* Gallery layout
         <div 
           className="flex flex-col items-center justify-center mt-4 md:mt-12 w-full"
         >
@@ -134,10 +139,10 @@ const About = () => {
             enableHover={false}
           />
          
-        </div>
+        </div> */}
       </div>
     </motion.section>
   );
 };
 
-export default About;
+export default Description;

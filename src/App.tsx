@@ -2,15 +2,15 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { HelmetProvider, Helmet } from 'react-helmet-async';
 import {
   Header,
-  Places,
+  Summary,
   Home,
-  About,
-  Discover,
+  Description,
+  // Discover,
   Video,
   Footer,
   ScrollToTop,
   ContactSection,
-  ImgGallery,
+  // ImgGallery,
   NotFound
 } from './components';
 
@@ -20,12 +20,15 @@ const MainPage = () => (
     <Header />
     <main className="main">
       <Home />
-      <About />
-      <ImgGallery />
-      <Discover />
-      <Places />
-      <Video />
+       <Description />
+     
+       <Video />
       <ContactSection />
+      {/* <ImgGallery /> */}
+      {/* <Discover /> */}
+     
+      <Summary />
+     
     </main>
     <Footer />
     <ScrollToTop />
