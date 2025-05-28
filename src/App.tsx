@@ -5,13 +5,13 @@ import {
   Summary,
   Home,
   Description,
-  // Discover,
+  Discover,
   Video,
   Footer,
   ScrollToTop,
   ContactSection,
   // ImgGallery,
-  NotFound
+  NotFound,
 } from './components';
 
 
@@ -21,10 +21,11 @@ const MainPage = () => (
     <main className="main">
       <Home />
        <Description />
-     
+      
+       {/* <ImgGallery /> */}
        <Video />
       <ContactSection />
-      {/* <ImgGallery /> */}
+  
       {/* <Discover /> */}
      
       <Summary />

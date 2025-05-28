@@ -286,8 +286,8 @@ const Discover = () => {
               </div>
 
               {/* Gradient Overlays */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-90" />
-              <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-black/50" />
+              {/* <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-90" />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-black/50" /> */}
               
               {/* Content Container */}
               <div className="absolute inset-0 flex flex-col justify-between p-4 sm:p-6 md:p-8">

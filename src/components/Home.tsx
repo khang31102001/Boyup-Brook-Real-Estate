@@ -56,7 +56,7 @@ const propertyGroups = {
     {
       src: heroImages.img_hill1,
       title: "Hill Estate",
-      description: "Exclusive hilltop property",
+      description: "Exclusive and Private Riverfront property ",
       details: {
         price: "Private sale",
         size: "301 acres",
