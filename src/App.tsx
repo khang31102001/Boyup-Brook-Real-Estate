@@ -5,7 +5,7 @@ import {
   Summary,
   Home,
   Description,
-  Discover,
+  // Discover,
   Video,
   Footer,
   ScrollToTop,

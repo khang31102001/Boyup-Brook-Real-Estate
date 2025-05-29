@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 // import { Maximize } from "lucide-react";
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';  
 import 'swiper/css';
