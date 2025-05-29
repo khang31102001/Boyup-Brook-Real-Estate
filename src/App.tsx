@@ -5,12 +5,11 @@ import {
   Summary,
   Home,
   Description,
-  // Discover,
   Video,
   Footer,
   ScrollToTop,
   ContactSection,
-  // ImgGallery,
+  
   NotFound,
 } from './components';
 
