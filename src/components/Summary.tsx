@@ -94,7 +94,7 @@ export default function Summary() {
 
   return (
     <section className="relative py-16 xl:pt-32 px-4 md:px-12 bg-gradient-to-b from-emerald-50 via-white to-cyan-50" id="summary">
-      <div className="max-w-5xl mx-auto px-4 flex flex-col items-center justify-center gap-8">
+      <div id='#summary' className="max-w-5xl mx-auto px-4 flex flex-col items-center justify-center gap-8">
         <motion.h2 
           initial={{ opacity: 0, y: -50 }}
           whileInView={{ opacity: 1, y: 0 }}
