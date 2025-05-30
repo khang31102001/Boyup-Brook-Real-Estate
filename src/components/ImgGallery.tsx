@@ -7,6 +7,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 
 import { heroImages } from '../constants/images';
+import Discover from './Discover'
 
 interface Property {
   src: string;
@@ -80,7 +81,7 @@ const ImgGallery = () => {
 
   return (
     <section className="w-full px-4 py-8 md:py-16 lg:py-20 xl:py-32 bg-gradient-to-b from-white to-emerald-50">
-      <div className="max-w-7xl mx-auto">
+      <div id="gallery" className="max-w-7xl mx-auto">
         <motion.h1 
           initial={{ opacity: 0, y: -50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -381,6 +382,7 @@ const ImgGallery = () => {
           </motion.div>
         )}
       </div>
+      <Discover/>
     </section>
   )
 }

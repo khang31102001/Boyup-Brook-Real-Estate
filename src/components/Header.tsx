@@ -30,7 +30,7 @@ const Header = () => {
   const navLinks = [
     { href: '#home', label: 'Home' },
     { href: '#description', label: 'Description' },
-    { href: '#Property Gallery', label: 'Property Gallery'},
+    { href: '#gallery', label: 'Gallery'},
     { href: '#contact', label: 'Contact' },
     { href: '#summary', label: 'Summary' },
    
@@ -55,12 +55,13 @@ const Header = () => {
       }`}>
         <a className="font-bold text-h3 cursor-pointer"
         onClick={() => {
-          const homeSection = document.getElementById('home');
+          const homeSection = document.getElementById('bridgetown');
+          
           if (homeSection) {
             homeSection.scrollIntoView({ behavior: 'smooth' });
           }
         }}
-        >Boyup Brook</a>
+        >Boyup Brook /Bridgetown</a>
         
         {/* Mobile menu button */}
         <button 

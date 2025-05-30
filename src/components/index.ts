@@ -8,7 +8,7 @@ export { default as ImgGallery } from './ImgGallery';
 export { default as Footer } from './Footer';
 export { default as ScrollToTop } from './ScrollToTop';
 export { default as ContactSection } from './ContactSection';
-export {default as NotFound} from './NotFound';
+export { default as NotFound} from './NotFound';
 
 
 

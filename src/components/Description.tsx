@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 // import BounceCards from './BounceCards';
-import Discover from './Discover'; 
-
 // import img1 from '../public/img/img1.jpg'
 // import img2 from '../public/img/img2.jpg'
 // import img3 from '../public/img/img3.jpg'
@@ -128,7 +126,7 @@ const Description = () => {
             );
           })}
         </div>
-         <Discover/>
+         
         {/* Gallery layout
         <div 
           className="flex flex-col items-center justify-center mt-4 md:mt-12 w-full"
@@ -145,7 +143,7 @@ const Description = () => {
             enableHover={false}
           />
          
-        </div> */}
+        </div> */}=
       </div>
     </motion.section>
   );

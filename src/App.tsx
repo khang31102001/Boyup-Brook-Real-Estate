@@ -9,9 +9,10 @@ import {
   Footer,
   ScrollToTop,
   ContactSection,
-  
+  ImgGallery,
   NotFound,
 } from './components';
+import PropertyGallery from './components/PropertyGallery';
 
 
 const MainPage = () => (
@@ -20,15 +21,11 @@ const MainPage = () => (
     <main className="main">
       <Home />
        <Description />
-      
-       {/* <ImgGallery /> */}
+       <PropertyGallery/>
        <Video />
+       <ImgGallery />
       <ContactSection />
-  
-      {/* <Discover /> */}
-     
       <Summary />
-     
     </main>
     <Footer />
     <ScrollToTop />
