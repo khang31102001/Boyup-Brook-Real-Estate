@@ -166,7 +166,7 @@ export default function BounceCards({
       {/* Modal xem ảnh lớn */}
       {selectedIndex !== null && (
         <div
-          className="fixed inset-0 z-[100] bg-black/80 flex items-center justify-center p-2 sm:p-6"
+          className="fixed inset-0 z-[1001] bg-black/80 flex items-center justify-center p-2 sm:p-6"
           onClick={() => setSelectedIndex(null)}
         >
           <div className="absolute inset-0 bg-white/90 z-0" />

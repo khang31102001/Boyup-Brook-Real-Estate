@@ -96,7 +96,8 @@ main {
 
 /* Custom scrollbar styles */
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 0px;
+  display: none;
 }
 
 ::-webkit-scrollbar-track {
@@ -121,7 +122,7 @@ main {
 
 /* Firefox scrollbar */
 * {
-  scrollbar-width: thin;
+  scrollbar-width: none;
   scrollbar-color: #164e63 #f1f1f1;
 }
 

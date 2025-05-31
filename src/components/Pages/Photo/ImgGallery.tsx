@@ -6,8 +6,8 @@ import 'swiper/css/pagination'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 
-import { heroImages } from '../constants/images';
-import Discover from './Discover'
+import { heroImages } from '../../../constants/images';
+
 
 interface Property {
   src: string;
@@ -382,7 +382,7 @@ const ImgGallery = () => {
           </motion.div>
         )}
       </div>
-      <Discover/>
+     
     </section>
   )
 }

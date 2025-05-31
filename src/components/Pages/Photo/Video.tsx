@@ -2,9 +2,9 @@ import { useRef, useState, useEffect } from 'react';
 import { PlayIcon, PauseIcon, ArrowsPointingOutIcon } from '@heroicons/react/24/solid';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import thumbnail from '../public/img/thumb.jpg';
-import video2 from '../public/video/video-2.mp4';
-import video_river from '../public/video/video-river.mp4';
+import thumbnail from '../../../public/img/thumb.jpg';
+import video2 from '../../../public/video/video-2.mp4';
+import video_river from '../../../public/video/video-river.mp4';
 
 const formatTime = (time: number) => {
   const minutes = Math.floor(time / 60);

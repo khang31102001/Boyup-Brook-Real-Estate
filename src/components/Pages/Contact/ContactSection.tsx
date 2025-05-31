@@ -7,8 +7,8 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
-import img_plan from '../public/img/PlanView.jpg'
-import img_land from '../public/img/LandgateAerial.jpg'
+import img_plan from '../../../public/img/PlanView.jpg'
+import img_land from '../../../public/img/LandgateAerial.jpg'
 
 export default function ContactSection() {
   const formRef = useRef<HTMLFormElement>(null);

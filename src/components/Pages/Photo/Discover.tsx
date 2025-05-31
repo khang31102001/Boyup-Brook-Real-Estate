@@ -6,7 +6,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
-import { heroImages } from '../constants/images';
+import { heroImages } from '../../../constants/images';
 
 const places = [
   {

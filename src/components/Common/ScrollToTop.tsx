@@ -6,7 +6,7 @@ const ScrollToTop = () => {
 
   useEffect(() => {
     const toggleVisibility = () => {
-      if (window.pageYOffset > 200) {
+      if (window.pageYOffset > 0) {
         setIsVisible(true);
       } else {
         setIsVisible(false);
@@ -28,7 +28,7 @@ const ScrollToTop = () => {
   };
 
   return (
-    <div className="fixed z-[100] right-2 md:right-8 bottom-2 md:bottom-8 flex flex-col gap-4">
+    <div className="fixed z-[999] right-2 md:right-8 bottom-2 md:bottom-8 flex flex-col gap-4">
       <div className="relative group">
         <a 
           href="tel:+61123456789"
