@@ -1,4 +1,4 @@
-import { FaShare, FaStar, FaRuler, FaMapMarker } from 'react-icons/fa';
+import { FaShare, FaRuler, FaMapMarker } from 'react-icons/fa';
 import { heroImages } from '../../../constants/images';
 
  const PropertyDetail = () => {
