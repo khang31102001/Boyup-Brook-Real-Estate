@@ -19,13 +19,13 @@ const Header = () => {
   const navLinks = [
     { to: '/', label: 'Home' },
     { to: '/description', label: 'Description' },
-    { to: '/photo', label: 'Photo & Video Gallery'},
+    { to: '/gallery', label: 'Gallery'},
     { to: '/contact', label: 'Contact' },
     { to: '/summary', label: 'Summary' },
   ];
 
   return (
-    <header className={`fixed top-0 left-0 w-full z-[999] transition-colors duration-300 ${isScrolled || isMenuOpen ? 'bg-white shadow-lg' : 'bg-transparent'}`}>
+    <header className={`fixed top-0 left-0 w-full z-[100] transition-colors duration-300 ${isScrolled || isMenuOpen ? 'bg-white shadow-lg' : 'bg-transparent'}`}>
       <nav className={`flex justify-between items-center px-4 md:px-12 py-4 md:py-8 max-w-[2050px] mx-auto ${isScrolled || !isHome || isMenuOpen ? 'text-emerald-900' : 'text-white'}`}>
         <Link to="/" className="font-bold text-lg md:text-2xl z-[1000] ">
           Boyup Brook / Bridgetown

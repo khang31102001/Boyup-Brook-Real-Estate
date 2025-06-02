@@ -14,7 +14,7 @@ export default function Title({ mainTitle, subtitle, className = '' }: TitleProp
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
     >
-      <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold  mb-4">
+      <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4">
         {mainTitle}
       </h1>
       {subtitle && (

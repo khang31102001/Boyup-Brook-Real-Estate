@@ -14,7 +14,7 @@ export { default as Summary } from './Pages/Summary/Summary';
 export { default as Discover } from './Pages/Photo/Discover';
 export { default as Video } from './Pages/Photo/Video';
 export { default as ImgGallery } from './Pages/Photo/ImgGallery';
-
+export { default as PropertyDetail } from './Pages/Photo/PropertyDetail';
 // Contact components
 export { default as ContactSection } from './Pages/Contact/ContactSection';
 

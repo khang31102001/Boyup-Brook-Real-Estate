@@ -25,6 +25,9 @@ import img_asp3 from '../public/img/img_asp-3.jpg'
 import img_family from '../public/img/img_family.jpg'
 import img_family2 from '../public/img/img_family-2.jpg'
 import img_family3 from '../public/img/img_family-3.jpg'
+
+
+import ava from '../public/img/avar.png'
 // Export individual images
 export const heroImages = {
   hero1,
@@ -47,11 +50,12 @@ export const heroImages = {
   img_asp3,
   img_family,
   img_family2,
-  img_family3
+  img_family3,
+  ava
 };
 
 // Export as array for slider
-export const heroSliderImages = [hero1, hero2, hero3, hero4, hero5, img_hill, img_hill1, img_hill2, img_hill3, img_river, img_river1, img_river2, img_river3, img_river4, img_asp, img_asp1, img_asp2, img_asp3, img_family, img_family2, img_family3];
+export const heroSliderImages = [hero1, hero2, hero3, hero4, hero5, img_hill, img_hill1, img_hill2, img_hill3, img_river, img_river1, img_river2, img_river3, img_river4, img_asp, img_asp1, img_asp2, img_asp3, img_family, img_family2, img_family3, ava];
 
 // Export all images as a single object
 const images = {

@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { HelmetProvider, Helmet } from 'react-helmet-async';
 import { useState, useEffect } from 'react';
-import { MainPage, NotFound, Description, Photo, Contact, Summary } from './pages';
+import { MainPage, NotFound, Description, Gallery, Contact, Summary } from './pages';
 import { Layout, Loading } from './components';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -58,7 +58,7 @@ const App = () => {
                   <Route element={<Layout />}>
                     <Route path="/" element={<MainPage />} />
                     <Route path="/description" element={<Description />} />
-                    <Route path="/photo" element={<Photo />} />
+                    <Route path="/gallery" element={<Gallery />} />
                     <Route path="/summary" element={<Summary />} />
                     <Route path="/contact" element={<Contact />} />
                     <Route path="*" element={<NotFound />} />
