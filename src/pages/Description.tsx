@@ -38,7 +38,7 @@ export default function Description() {
     {
       icon: <FaWater className="w-8 h-8" />,
       title: "Blackwood River Frontage",
-      description: "2km of pristine river frontage offering stunning views and recreational opportunities"
+      description: "2km approx of pristine river frontage offering stunning views and recreational opportunities"
     },
     {
       icon: <FaTree className="w-8 h-8" />,
@@ -53,13 +53,9 @@ export default function Description() {
     {
       icon: <FaHome className="w-8 h-8" />,
       title: "Modern Infrastructure",
-      description: "3-bay shed with concrete floor and power connection ready for immediate use"
+      description: "3-bay shed with concrete slab floor "
     },
-    {
-      icon: <FaRoad className="w-8 h-8" />,
-      title: "Excellent Access",
-      description: "Well-maintained internal roads and strategic location between Boyup Brook and Bridgetown"
-    },
+  
     {
       icon: <FaSeedling className="w-8 h-8" />,
       title: "Agricultural Potential",

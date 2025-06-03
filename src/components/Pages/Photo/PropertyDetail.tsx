@@ -3,9 +3,9 @@ import { heroImages } from '../../../constants/images';
 
  const PropertyDetail = () => {
   const propertyData = {
-    title: "121 Hectares approx - Your Opportunity to oen Prime Rural Property near Boyup Brook, WA",
+    title: "121 Hectares approx - Your Opportunity to own a Prime Rural Lifestyle Property near Boyup Brook and Bridgetown, WA",
     location: "Boyup Brook / Bridgetown, Western Australia",
-    price: "Private Sale",
+    price: "Offers invited $780,000 - $840,000",
     landSize: "121 hectares approx",
     description: "This property is a rare opportunity to own a large, prime rural property in the heart of Western Australia's beautiful South West region. Located just 25 kilometres east of Bridgetown, this property offers a unique blend of natural beauty, historical significance, and potential for a wide range of agricultural and lifestyle pursuits.",
     agent: {
@@ -31,7 +31,7 @@ import { heroImages } from '../../../constants/images';
             </div>
             <button className="text-emerald-900 w-fit flex items-center border border-gray-300 px-4 py-2 rounded-md hover:bg-gray-50">
               <FaShare className="mr-2" />
-              Contact Agent
+              Contact Owner
             </button>
             </div>
            
