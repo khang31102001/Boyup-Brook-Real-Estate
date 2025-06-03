@@ -7,8 +7,8 @@ const Contact = () => {
  
   <div className='max-w-7xl mx-auto py-20 px-4 md:px-8'>
     <Title 
-      mainTitle="Gallery" 
-      subtitle="Take a look at our gallery"
+      mainTitle="Contact Us for Full Property Details" 
+      subtitle="Request full property details now"
       className='text-emerald-900'
     />
     <ContactSection />
