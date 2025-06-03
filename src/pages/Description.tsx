@@ -6,7 +6,7 @@ import Footer from '../components/Common/Footer';
 import { ScrollToTop } from '../components';
 import BounceCards from '../components/Pages/Photo/BounceCards';
 import { heroImages } from '../constants/images';
-import { FaTree, FaHome, FaWater, FaMountain, FaRoad, FaSeedling } from 'react-icons/fa';
+import { FaTree, FaHome, FaWater, FaMountain, FaSeedling } from 'react-icons/fa';
 
 export default function Description() {
 
@@ -53,7 +53,7 @@ export default function Description() {
     {
       icon: <FaHome className="w-8 h-8" />,
       title: "Modern Infrastructure",
-      description: "3-bay shed with concrete slab floor "
+      description: "3-bay shed with concrete slab floor"
     },
   
     {

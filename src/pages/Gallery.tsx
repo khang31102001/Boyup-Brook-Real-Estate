@@ -120,7 +120,7 @@ const Gallery = () => {
   };
 
   return (
-    <section className='min-h-screen bg-white'>
+    <section className='bg-white'>
       <style>{swiperStyles}</style>
       <div className='max-w-7xl mx-auto py-20 px-4 md:px-8'>
         <Title 
@@ -129,26 +129,30 @@ const Gallery = () => {
           className='text-emerald-900'
         />
         {/* Main Image and Thumbnails Container */}
-        <div className="flex flex-col lg:flex-row gap-4 mb-8 h-[700px]">
+        <div className="flex flex-col lg:flex-row gap-4 mb-8 h-[400px] lg:h-[550px] xl:h-[650px] relative">
           {/* Main large image */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
-            className="lg:flex-[3] relative rounded-xl overflow-hidden cursor-pointer h-full group"
+            className="flex-1 lg:flex-[3] relative rounded-xl overflow-hidden cursor-pointer h-full group"
             onClick={() => handleImageClick(selectedImage)}
           >
+            
             <img
               src={allImages[selectedImage].src}
               className="w-full h-full object-cover"
             />
+            <div className="absolute lg:hidden bg-black/50 inset-0 flex items-center justify-center">
+              <span className="text-white text-4xl font-bold">+{allImages.length - 4}</span>
+            </div>
             <div className="absolute top-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
               {selectedImage + 1} / {allImages.length}
             </div>
           </motion.div>
 
           {/* Right side thumbnails - Chỉ hiển thị 3 ảnh */}
-          <div className="lg:flex-1 flex flex-col gap-3 h-full">
+          <div className="flex-0 hidden lg:flex-1 lg:flex flex-col gap-3 h-full">
             {thumbnailImages.map((image, index) => (
               <motion.div
                 key={index}
@@ -168,7 +172,7 @@ const Gallery = () => {
                 />
                 {index === 2 ? (
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-white text-4xl font-bold">+{allImages.length - 3}</span>
+                    <span className="text-white text-4xl font-bold">+{allImages.length - 4}</span>
                   </div>
                 ) : (
                   <div className="absolute top-2 right-2 bg-black/50 text-white px-2 py-0.5 rounded-full text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity">
@@ -179,8 +183,6 @@ const Gallery = () => {
             ))}
           </div>
         </div>
-
-        {/* Property Information */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -189,6 +191,7 @@ const Gallery = () => {
         >
          <PropertyDetail />
         </motion.div>
+       
       </div>
 
       {/* Fullscreen Image Swiper */}
