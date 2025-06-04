@@ -81,7 +81,7 @@ export default function Description() {
     return count;
   }
   return (
-    <section className="min-h-screen">
+    <section className="min-h-screen relative bg-white">
       <div className="max-w-7xl mx-auto py-20 px-4 md:px-8 flex flex-col gap-4 xl:gap-12 justify-center items-center">
         {/* Title Section */}
         

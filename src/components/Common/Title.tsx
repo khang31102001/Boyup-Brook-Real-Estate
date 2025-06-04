@@ -9,7 +9,7 @@ interface TitleProps {
 export default function Title({ mainTitle, subtitle, className = '' }: TitleProps) {
   return (
     <motion.div 
-      className={`text-center my-8 ${className}`}
+      className={`text-center my-8 bg-white ${className}`}
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}

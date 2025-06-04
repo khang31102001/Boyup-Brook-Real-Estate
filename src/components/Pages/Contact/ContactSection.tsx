@@ -1,14 +1,8 @@
 import { motion } from 'framer-motion';
 import { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Navigation } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-
-import img_plan from '../../../public/img/PlanView.jpg'
-import img_land from '../../../public/img/LandgateAerial.jpg'
+import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaUser } from 'react-icons/fa';
+import { heroImages } from '../../../constants/images';
 
 export default function ContactSection() {
   const formRef = useRef<HTMLFormElement>(null);
@@ -140,142 +134,165 @@ export default function ContactSection() {
   return (
     <motion.section 
       id="contact" 
-      className="w-full"
+      className="w-full  py-20"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
     >
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col lg:flex-row justify-between items-center gap-8">
-          <motion.div 
-            className="w-full lg:w-1/2 text-center lg:text-left"
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <motion.h2 
-              className="text-3xl md:text-4xl font-bold text-cyan-900 mb-4"
-              initial={{ opacity: 0, y: -20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              Get More Information About This Property
-            </motion.h2>
-            <motion.p 
-              className="text-gray-700 mb-8"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            >
-              Leave your email and we'll send you detailed information about the Boyup Brook acreage, including pricing, features, and upcoming viewings.
-            </motion.p>
-            <motion.form 
-              className="flex flex-col gap-4 max-w-xl"
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16 items-center">
+          {/* Left Column - Contact Info */}
+          <div className="bg-emerald-700 rounded-2xl p-8 text-white">
+            
+            <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
+              transition={{ duration: 0.5 }}
+              className="w-36 h-36 mx-auto rounded-full overflow-hidden border-4 border-emerald-100 shadow flex-shrink-0"
+            >
+              <img src={heroImages.john} className="w-full h-full object-cover" alt="Agent" />
+            </motion.div>
+            <div className="">
+              {/* Contact Info Cards */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="flex flex-col gap-4 mt-8 mx-auto"
+              >
+                <div className="flex items-center space-x-4 p-4 bg-emerald-600/50 rounded-xl">
+                  <div className="bg-emerald-600 p-3 rounded-full">
+                    <FaUser className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold">John Smith</h3>
+                    <p className="text-emerald-200">Property Owner</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-4 p-4 bg-emerald-600/50 rounded-xl">
+                  <div className="bg-emerald-600 p-3 rounded-full">
+                    <FaPhone className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold">Phone</h3>
+                    <p className="text-emerald-200">+61 123 456 789</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-4 p-4 bg-emerald-600/50 rounded-xl">
+                  <div className="bg-emerald-600 p-3 rounded-full">
+                    <FaEnvelope className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold">Email</h3>
+                    <p className="text-emerald-200">contact@boyupbrook.com</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-4 p-4 bg-emerald-600/50 rounded-xl">
+                  <div className="bg-emerald-600 p-3 rounded-full">
+                    <FaMapMarkerAlt className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold">Location</h3>
+                    <p className="text-emerald-200">Boyup Brook, Western Australia</p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+
+          {/* Right Column - Contact Form */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="bg-white rounded-2xl shadow-xl p-8"
+          >
+            <h3 className="text-2xl font-bold text-gray-800 mb-6">Send Owner a Message</h3>
+            <form 
               ref={formRef}
               onSubmit={handleSubmit}
+              className="space-y-6"
             >
-              <input 
-                type="text" 
-                name="name" 
-                placeholder="Your name" 
-                value={form.name} 
-                onChange={handleChange} 
-                className="w-full flex-1 px-6 py-4 rounded-lg border border-gray-300 bg-white text-cyan-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-900"
-              />
-              <input
-                type="email"
-                name="email"
-                placeholder="Your email address"
-                value={form.email}
-                onChange={handleChange}
-                className="w-full flex-1 px-6 py-4 rounded-lg border border-gray-300 bg-white text-cyan-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-900"
-              />
-              <textarea
-                name="message"
-                value={form.message}
-                onChange={handleChange}
-                placeholder="Your message"
-                className="w-full flex-1 px-6 py-4 rounded-lg border border-gray-300 bg-white text-cyan-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-900"
-              />
+              <div>
+                <label className="block text-sm font-medium text-emerald-900 mb-2">Name</label>
+                <input 
+                  type="text" 
+                  name="name" 
+                  value={form.name} 
+                  onChange={handleChange} 
+                  className="w-full px-4 py-3 rounded-lg bg-transparent border border-emerald-900 focus:ring-2 focus:ring-emerald-500 focus:border-transparent focus:text-emerald-900"
+                  placeholder="Enter your name"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-emerald-900 mb-2">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  value={form.email}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 rounded-lg bg-transparent border border-emerald-900 focus:ring-2 focus:ring-emerald-500 focus:border-transparent focus:text-emerald-900"
+                  placeholder="Enter your email"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-emerald-900 mb-2">Message</label>
+                <textarea
+                  name="message"
+                  value={form.message}
+                  onChange={handleChange}
+                  rows={6}
+                  className="w-full px-4 py-3 rounded-lg bg-transparent border border-emerald-900 focus:ring-2 focus:ring-emerald-500 focus:border-transparent focus:text-emerald-900"
+                  placeholder="Your message"
+                />
+              </div>
+
               <motion.button
                 type="submit"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-emerald-800 text-white font-semibold rounded-lg transition-colors hover:bg-emerald-900 focus:ring-2 focus:ring-offset-2 focus:ring-emerald-400"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full py-4 bg-emerald-600 text-white font-semibold rounded-lg transition-colors hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"
               >
-                {loading ? 'Sending...' : 'Request Info'}
+                {loading ? 'Sending...' : 'Send Message'}
               </motion.button>
-            </motion.form>
-          </motion.div>
-          
-          <motion.div 
-            className="w-full lg:w-1/2 h-[600px] rounded-lg overflow-hidden shadow-xl relative"
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            <Swiper
-              modules={[Pagination, Navigation]}
-              spaceBetween={0}
-              slidesPerView={1}
-              pagination={{ 
-                clickable: true,
-                bulletClass: 'swiper-pagination-bullet !bg-emerald-600 !opacity-50',
-                bulletActiveClass: 'swiper-pagination-bullet-active !bg-emerald-600 !opacity-100'
-              }}
-              navigation={{
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-              }}
-              className="h-full"
-            >
-              <SwiperSlide>
-                <div className="relative w-full h-full bg-gray-100 flex items-center justify-center">
-                  <img 
-                    src={img_plan} 
-                    alt="Property Plan View" 
-                    className="max-w-full max-h-full object-contain"
-                  />
-                  <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-4">
-                    <h3 className="text-lg font-semibold">Property Plan View</h3>
-                    <p className="text-sm">Detailed layout of the 301-acre property</p>
-                  </div>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="relative w-full h-full bg-gray-100 flex items-center justify-center">
-                  <img 
-                    src={img_land} 
-                    alt="Aerial View" 
-                    className="max-w-full max-h-full object-contain"
-                  />
-                  <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-4">
-                    <h3 className="text-lg font-semibold">Aerial View</h3>
-                    <p className="text-sm">Landgate aerial perspective of the property</p>
-                  </div>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <iframe
-                  title="Boyup Brook Location"
-                  src="https://www.google.com/maps?q=Boyup+Brook+WA,+Australia&hl=en&output=embed"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                />
-              </SwiperSlide>
-
-              {/* Custom Navigation Buttons */}
-              <div className="swiper-button-prev !w-12 !h-12 !bg-white/80 hover:!bg-white !rounded-full !shadow-lg after:!text-emerald-600 after:!text-2xl"></div>
-              <div className="swiper-button-next !w-12 !h-12 !bg-white/80 hover:!bg-white !rounded-full !shadow-lg after:!text-emerald-600 after:!text-2xl"></div>
-            </Swiper>
+            </form>
           </motion.div>
         </div>
+
+        {/* Large Map Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="w-full rounded-2xl overflow-hidden shadow-xl h-[600px] relative group"
+        >
+          <iframe
+            title="Boyup Brook Location"
+            src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3311.1241957041457!2d116.38427!3d-33.912203!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMzPCsDU0JzQzLjkiUyAxMTbCsDIzJzAzLjQiRQ!5e0!3m2!1svi!2s!4v1749030033985!5m2!1svi!2s&language=en&zoom=0&maptype=roadmap&style=feature:all|element:labels|visibility:on&style=feature:administrative|element:geometry|visibility:off&style=feature:landscape|element:geometry|color:0xf5f5f5&style=feature:poi|element:geometry|color:0xe8e8e8&style=feature:road|element:geometry|color:0xffffff&style=feature:road|element:labels|visibility:simplified&style=feature:transit|visibility:off&style=feature:water|element:geometry"
+
+            
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            className="transition-opacity duration-300"
+          />
+
+
+          
+          <div className="absolute top-2 left-2 bg-white backdrop-blur-sm p-4 rounded-xl shadow-lg max-w-sm">
+            <h4 className="text-lg font-semibold text-emerald-800 mb-2">Boyup Brook</h4>
+            <p className="text-sm text-emerald-800">
+              Located in the heart of Western Australia, Boyup Brook is a charming rural town known for its natural beauty and community spirit.
+            </p>
+          </div>
+        </motion.div>
       </div>
     </motion.section>
   );

@@ -1,7 +1,7 @@
 import { FaShare, FaRuler, FaMapMarker } from 'react-icons/fa';
 import { heroImages } from '../../../constants/images';
 import { Link } from 'react-router-dom';
-import John from "../../../public/img/john.jpg";
+
 
 const PropertyDetail = () => {
   const propertyData = {
@@ -13,14 +13,13 @@ const PropertyDetail = () => {
     agent: {
       name: "John",
       phone: "0457 234 191",
-      image: heroImages.ava
+      image: heroImages.john
     }
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+    <div className="max-w-7xl mx-auto">
       <div className="flex flex-col md:flex-row justify-between items-start mb-8">
-
         <div className='flex flex-col gap-2'>
           <div className='flex flex-col gap-2'>
             <span className="text-3xl font-bold text-emerald-900">Offers invited</span>
@@ -48,12 +47,10 @@ const PropertyDetail = () => {
 
           </div>
         </div>
-
       </div>
 
-      <div className='grid grid-cols-1 lg:grid-cols-4 gap-4'>
-
-        <div className="mb-8 col-span-3 flex flex-col gap-4">
+      <div className='grid grid-cols-1 md:grid-cols-4 gap-6'>
+        <div className="col-span-3 flex flex-col gap-4">
           <div className='flex flex-col gap-4'>
             <h2 className="text-2xl font-bold text-emerald-900">{propertyData.title}</h2>
             <p className="text-gray-700 leading-relaxed">{propertyData.description}</p>
@@ -67,51 +64,62 @@ const PropertyDetail = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
-          <div className="flex flex-col items-center text-center">
 
-            {/* Avatar */}
-            <div className="w-32 h-32 rounded-full overflow-hidden mb-4 border-4 border-emerald-100 shadow">
-              <img src={John} className="w-full h-full object-cover" alt="Agent" />
+        <div className="h-fit col-span-1 bg-white rounded-lg shadow-lg p-6">
+          <div className="flex flex-col gap-4">
+            
+            {/* Agent Info Section */}
+            <div className="flex flex-col gap-4">
+              {/* Avatar */}
+              <div className="w-36 h-36 mx-auto rounded-full overflow-hidden border-4 border-emerald-100 shadow flex-shrink-0">
+                <img src={propertyData.agent.image} className="w-full h-full object-cover" alt="Agent" />
+              </div>
+
+              {/* Contact Info */}
+              <div className="flex flex-col justify-center gap-3">
+                {/* Name */}
+                <div className="font-bold text-lg text-emerald-900 text-center">
+                  {propertyData.agent.name}
+                </div>
+
+                <div className='flex flex-col justify-center items-center gap-2 py-4 border-y border-emerald-100'> 
+                {/* Email */}
+                <div className='flex items-center gap-2'>
+                  <span className='text-emerald-900'>📧</span>
+                  <a
+                    href="mailto:eaglescreensjr@gmail.com"
+                    className="text-emerald-900 hover:text-emerald-700"
+                  >
+                    eaglescreensjr@gmail.com
+                  </a>
+                </div>
+
+                {/* Phone */}
+                <div className='flex items-center gap-2'>
+                  <span className='text-emerald-900'>📞</span>
+                  <a
+                    href="tel:+0457230191"
+                    className="text-emerald-900 hover:text-emerald-700"
+                  >
+                    0457 230 191
+                  </a>
+                </div>
+                </div>
+              </div>
             </div>
 
-            {/* Name */}
-            <div className="font-bold text-lg text-emerald-900 mb-6">
-              {propertyData.agent.name}
-            </div>
-
-            {/* Contact Buttons */}
-            <div className="flex flex-col gap-3 w-full">
-
-              {/* Get In Touch */}
-              <Link
-                to={'/contact'}
-                className="bg-red-600 text-white font-semibold py-3 rounded-md hover:bg-red-700 transition duration-300"
-                onClick={() => window.scrollTo(0, 0)}
-              >
-                Get in touch
-              </Link>
-
-              {/* Email */}
-              <a
-                href="mailto:eaglescreensjr@gmail.com"
-                className="flex items-center justify-center border border-gray-300 text-emerald-900 py-3 rounded-md hover:bg-gray-50 transition duration-300"
-              >
-                📧 eaglescreensjr@gmail.com
-              </a>
-
-              {/* Phone */}
-              <a
-                href="tel:+0457230191"
-                className="flex items-center justify-center border border-gray-300 text-emerald-900 py-3 rounded-md hover:bg-gray-50 transition duration-300"
-              >
-                📞 0457 230 191
-              </a>
-              
-            </div>
+            {/* Contact Button */}
+            <Link
+              to={'/contact'}
+              className="bg-red-600 text-white font-semibold py-3 rounded-md hover:bg-red-700 transition duration-300 text-center"
+              onClick={() => window.scrollTo(0, 0)}
+            >
+              Get in touch
+            </Link>
           </div>
-        </div>
+        </div>  
       </div>
+      
     </div>
   );
 };

@@ -96,25 +96,6 @@ const Video = () => {
   return (
     <section className='relative py-10 px-4 md:px-12 bg-gradient-to-b from-white to-emerald-50' id="video-tour" aria-label="Video Tour">
       <div className="max-w-6xl mx-auto flex flex-col items-center justify-center gap-8">
-        
-        <motion.h2 
-          initial={{ opacity: 0, y: -50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-3xl md:text-5xl text-center font-bold text-cyan-900"
-        >
-         Scenes from Boyup Brook
-        </motion.h2>
-        {/* <motion.p 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-          className="text-lg text-gray-700 max-w-3xl mx-auto text-center"
-        >
-          Immerse yourself in the natural beauty of this stunning property through our exclusive video tour.
-        </motion.p> */}
-
-     
         <div className="flex gap-4 mb-4">
           {videoList.map((v, idx) => (
             <button

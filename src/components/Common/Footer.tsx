@@ -9,13 +9,20 @@ const Footer = () => {
     { icon: 'fas fa-envelope', text: 'eaglescreensjr@gmail.com' }
   ]
   return (
-    <footer className="bg-emerald-800 text-white pt-16 pb-8">
-      <div className="max-w-7xl mx-auto px-4">
+    <footer className="bg-emerald-800 text-white pt-16 pb-8 w-full">
+      <motion.div 
+        initial={{ opacity: 0, y: 0 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="max-w-7xl mx-auto px-4"
+      >
         <div className="flex flex-col justify-between md:flex-row gap-8 mb-12 w-full">
           {/* About Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <div className='w-full max-w-md'>
@@ -31,7 +38,8 @@ const Footer = () => {
           {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <h3 className="text-h3 font-semibold mb-4">Contact Info</h3>
@@ -46,8 +54,9 @@ const Footer = () => {
           </motion.div>
         </div>
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
           className='flex justify-center items-center'
         >
@@ -55,7 +64,7 @@ const Footer = () => {
             &copy; {currentYear} Boyup Brook. All rights reserved.
           </p>
         </motion.div>
-      </div>
+      </motion.div>
     </footer>
   );
 };

@@ -7,8 +7,8 @@ const Contact = () => {
  
   <div className='max-w-7xl mx-auto py-20 px-4 md:px-8'>
     <Title 
-      mainTitle="Contact Us for Full Property Details" 
-      subtitle="Request full property details now"
+      mainTitle="Contact Owner" 
+      subtitle="Leave your email and we'll send you detailed information about the Boyup Brook acreage, including pricing, features, and upcoming viewings."
       className='text-emerald-900'
     />
     <ContactSection />
