@@ -5,7 +5,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
-  const isHome = location.pathname === '/';
+  const isHome = location.pathname === '/' || location.pathname === '/summary';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,6 +23,10 @@ const Header = () => {
     { to: '/contact', label: 'Contact' },
     { to: '/summary', label: 'Summary' },
   ];
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
     <header className={`fixed top-0 left-0 w-full z-[100] transition-colors duration-300 ${isScrolled || isMenuOpen ? 'bg-white shadow-lg' : 'bg-transparent'}`}>
@@ -52,6 +56,7 @@ const Header = () => {
             <li key={to}>
               <Link 
                 to={to}
+                onClick={() => scrollToTop()}
                 className={`hover:border-b-2 pb-1 ${isScrolled || !isHome 
                   ? 'hover:border-emerald-900' 
                   : 'hover:border-white'} ${

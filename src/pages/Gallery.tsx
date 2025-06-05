@@ -11,50 +11,46 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import Title from "../components/Common/Title";
-import video_river from '../public/video/video-river.mp4';
-import video2 from '../public/video/video-2.mp4';
-import thumbnail from '../public/img/thumb.jpg';
 import { ArrowsPointingOutIcon } from "@heroicons/react/24/outline";
+import { videoData } from "../constants/video";
 
-// Custom CSS for Swiper navigation
-const swiperStyles = `
-  .swiper-button-next,
-  .swiper-button-prev {
-    width: 50px !important;
-    height: 50px !important;
-    
-    border-radius: 50% !important;
-    color: white !important;
-    transition: all 0.3s ease !important;
-  }
+// Media type definitions
+interface VideoMedia {
+  type: 'video';
+  src: string;
+  id: string;
+  title: string;
+  description: string;
+}
 
-  .swiper-button-next:hover,
-  .swiper-button-prev:hover {
-    color: #059669 !important;
-    transform: scale(1.1) !important;
-  }
+interface ImageMedia {
+  type: 'image';
+  src: string;
+}
 
-  .swiper-button-next::after,
-  .swiper-button-prev::after {
-    display: none !important;
-  }
+type Media = VideoMedia | ImageMedia;
 
-  .swiper-button-next.swiper-button-disabled,
-  .swiper-button-prev.swiper-button-disabled {
-    opacity: 0.2 !important;
-    cursor: not-allowed !important;
-  }
+// Combine images and videos for gallery
+const allMedia: Media[] = [
+  // Videos first
+  ...videoData.map(video => ({
+    type: 'video' as const,
+    src: video.src,
+    id: video.id,
+    title: video.title,
+    description: video.description
+  })),
+  // Then images
+  ...Object.values(heroImages).map(src => ({ 
+    type: 'image' as const, 
+    src 
+  }))
+];
 
-  .swiper-pagination-bullet {
-    background: white !important;
-    opacity: 0.5 !important;
-  }
-
-  .swiper-pagination-bullet-active {
-    opacity: 1 !important;
-    background: #059669 !important;
-  }
-`;
+// Get first 3 images for thumbnails (excluding videos)
+const thumbnailImages = allMedia
+  .filter((media): media is ImageMedia => media.type === 'image')
+  .slice(0, 3);
 
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState(0);
@@ -64,7 +60,7 @@ const Gallery = () => {
   const [showControls, setShowControls] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [isVideoFullscreen, setIsVideoFullscreen] = useState(false);
+  const [_isVideoFullscreen, setIsVideoFullscreen] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const videoContainerRef = useRef<HTMLDivElement>(null);
   const fullscreenVideoRef = useRef<HTMLVideoElement>(null);
@@ -86,6 +82,7 @@ const Gallery = () => {
     };
   }, [selectedImage]);
 
+  
   // Handle video time updates
   useEffect(() => {
     const video = isFullscreen ? fullscreenVideoRef.current : videoRef.current;
@@ -132,85 +129,6 @@ const Gallery = () => {
     if (!isPlaying) return; // Keep controls visible if video is paused
     setShowControls(false);
   };
-
-  // Tất cả các media (videos + images)
-  const allMedia = [
-    {
-      type: 'video',
-      src: video_river,
-      title: 'River Frontage',
-      thumbnail: thumbnail
-    },
-    {
-      type: 'video',
-      src: video2,
-      title: 'Property Overview',
-      thumbnail: thumbnail
-    },
-    {
-      type: 'image',
-      src: heroImages.img_river2,
-    },
-    {
-      type: 'image',
-      src: heroImages.img_river3,
-    },
-    {
-      type: 'image',
-      src: heroImages.img_river4,
-    },
-    {
-      type: 'image',
-      src: heroImages.img_river,
-    },
-    {
-      type: 'image',
-      src: heroImages.img_river1,
-    },
-    {
-      type: 'image',
-      src: heroImages.img_hill,
-    },
-    {
-      type: 'image',
-      src: heroImages.hero1,
-    },
-    {
-      type: 'image',
-      src: heroImages.hero2,
-    },
-    {
-      type: 'image',
-      src: heroImages.hero3,
-    },
-    {
-      type: 'image',
-      src: heroImages.hero4,
-    },
-    {
-      type: 'image',
-      src: heroImages.img_asp,
-    },
-    {
-      type: 'image',
-      src: heroImages.img_asp1,
-    },
-    {
-      type: 'image',
-      src: heroImages.img_asp2,
-    },
-    {
-      type: 'image',
-      src: heroImages.img_asp3,
-    },
-  ];
-
-  // 3 ảnh cho cột bên phải (không bao gồm ảnh chính)
-  const thumbnailImages = [
-    { src: heroImages.img_river3 },
-    { src: heroImages.img_river4 },
-    { src: heroImages.img_river }
-  ];
 
   const handleImageClick = (index: number) => {
     setSelectedImage(index);
@@ -329,11 +247,10 @@ const Gallery = () => {
 
   return (
     <section className='bg-white'>
-      <style>{swiperStyles}</style>
       <div className='max-w-7xl mx-auto py-20 px-4 md:px-8'>
         <Title 
           mainTitle="Gallery" 
-          subtitle="Take a look at our gallery"
+          subtitle="Explore our stunning property through photos and videos showcasing the natural beauty, facilities, and unique features"
           className='text-emerald-900'
         />
         {/* Main Image and Thumbnails Container */}
@@ -355,7 +272,6 @@ const Gallery = () => {
                 <video
                   ref={videoRef}
                   className="w-full h-full object-cover"
-                  poster={allMedia[selectedImage].thumbnail}
                   onClick={togglePlay}
                 >
                   <source src={allMedia[selectedImage].src} type="video/mp4" />

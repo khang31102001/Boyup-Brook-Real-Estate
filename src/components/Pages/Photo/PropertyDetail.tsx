@@ -1,22 +1,9 @@
 import { FaShare, FaRuler, FaMapMarker } from 'react-icons/fa';
-import { heroImages } from '../../../constants/images';
 import { Link } from 'react-router-dom';
-
+import { motion } from 'framer-motion';
+import { propertyData } from '../../../constants/data/propertyData';
 
 const PropertyDetail = () => {
-  const propertyData = {
-    title: "121 Hectares approx - Your Opportunity to own a Prime Rural Lifestyle Property near Boyup Brook and Bridgetown, WA",
-    location: "Boyup Brook / Bridgetown, Western Australia",
-    price: "$780,000 - $840,000",
-    landSize: "121 hectares approx",
-    description: "This property is a rare opportunity to own a large, prime rural property in the heart of Western Australia's beautiful South West region. Located just 25 kilometres east of Bridgetown, this property offers a unique blend of natural beauty, historical significance, and potential for a wide range of agricultural and lifestyle pursuits.",
-    agent: {
-      name: "John",
-      phone: "0457 234 191",
-      image: heroImages.john
-    }
-  };
-
   return (
     <div className="max-w-7xl mx-auto">
       <div className="flex flex-col md:flex-row justify-between items-start mb-8">
@@ -57,14 +44,38 @@ const PropertyDetail = () => {
           </div>
           <div className='flex flex-col gap-4'>
             <div className='flex flex-col gap-2'>
-              <div className='overflow-hidden rounded-xl'>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d37475.87069984924!2d116.22987497522304!3d-33.87856870202322!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2a305b123a0e45ad%3A0x61012c786b9d5398!2sBridgetown-Boyup%20Brook%20Rd%2C%20Western%20Australia%2C%20%C3%9Ac!5e0!3m2!1svi!2s!4v1748885861406!5m2!1svi!2s" width="100%" height="400" style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" title='map' ></iframe>
-              </div>
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="w-full rounded-2xl overflow-hidden shadow-xl h-[600px] relative group"
+              >
+                <iframe
+                  title="Boyup Brook Location"
+                  src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3311.1241957041457!2d116.38427!3d-33.912203!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMzPCsDU0JzQzLjkiUyAxMTbCsDIzJzAzLjQiRQ!5e0!3m2!1svi!2s!4v1749030033985!5m2!1svi!2s&language=en&zoom=0&maptype=roadmap&style=feature:all|element:labels|visibility:on&style=feature:administrative|element:geometry|visibility:off&style=feature:landscape|element:geometry|color:0xf5f5f5&style=feature:poi|element:geometry|color:0xe8e8e8&style=feature:road|element:geometry|color:0xffffff&style=feature:road|element:labels|visibility:simplified&style=feature:transit|visibility:off&style=feature:water|element:geometry"
+
+                  
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  className="transition-opacity duration-300"
+                />
+
+
+                
+                <div className="absolute top-2 left-2 bg-white backdrop-blur-sm p-4 rounded-xl shadow-lg max-w-sm">
+                  <h4 className="text-lg font-semibold text-emerald-800 mb-2">Boyup Brook</h4>
+                  <p className="text-sm text-emerald-800">
+                    Located in the heart of Western Australia, Boyup Brook is a charming rural town known for its natural beauty and community spirit.
+                  </p>
+                </div>
+              </motion.div>
             </div>
           </div>
+         
         </div>
-
-
         <div className="h-fit col-span-1 bg-white rounded-lg shadow-lg p-6">
           <div className="flex flex-col gap-4">
             

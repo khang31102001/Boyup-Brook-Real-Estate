@@ -18,7 +18,7 @@ export default function Title({ mainTitle, subtitle, className = '' }: TitleProp
         {mainTitle}
       </h1>
       {subtitle && (
-        <p className=" text-lg sm:text-xl max-w-2xl mx-auto tracking-wide">
+        <p className="text-sm lg:text-lg xl:text-xl max-w-2xl mx-auto tracking-wide text-emerald-900">
           {subtitle}
         </p>
       )}

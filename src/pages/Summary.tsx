@@ -1,202 +1,255 @@
-import { Footer } from "../components";
-import { motion } from "framer-motion";
-import { FaTree, FaWater, FaRoad, FaSun } from "react-icons/fa";
-import { useState } from "react";
-import { propertyImages } from "../constants/images";
+import { ContactSection, Footer } from "../components";
+import { motion, AnimatePresence } from "framer-motion";
+import Title from "../components/Common/Title";
+import VideoPlayer from "../components/Common/VideoPlayer";
+import { videoData } from "../constants/video";
+import { summaryImages } from "../constants/imagesSummary";
+import { useState, useMemo } from "react";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination } from 'swiper/modules';
+import { XMarkIcon } from '@heroicons/react/24/outline';
+import { ArrowsPointingOutIcon } from '@heroicons/react/24/outline';
+import 'swiper/css';
+import 'swiper/css/pagination';
 
 const Summary = () => {
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
+  
+  // Create an array of all images including special ones
+  const allImages = useMemo(() => {
+    const specialImages = [
+      { key: 'special_river1', src: summaryImages.img_river },
+      { key: 'special_river2', src: summaryImages.img_river }
+    ];
+    
+    const regularImages = Object.entries(summaryImages).map(([key, src]) => ({
+      key,
+      src
+    }));
 
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
+    // Combine all images in the order they appear in the grid
+    const combined = [];
+    
+    // First section (before first video)
+    combined.push(...regularImages.slice(0, 4));
+    // First special image
+    combined.push(specialImages[0]);
+    // Second section
+    combined.push(...regularImages.slice(4, 8));
+    // Second special image
+    combined.push(specialImages[1]);
+    // Remaining images
+    combined.push(...regularImages.slice(8));
+
+    return combined;
+  }, []);
+
+  const handleImageClick = (index: number) => {
+    setSelectedImageIndex(index);
   };
-
-  const features = [
-    {
-      icon: FaTree,
-      title: "Natural Beauty",
-      description: "Pristine land with native vegetation"
-    },
-    {
-      icon: FaWater,
-      title: "Water Resources",
-      description: "Natural dam & year-round soak"
-    },
-    {
-      icon: FaRoad,
-      title: "Easy Access",
-      description: "Sealed road frontage"
-    },
-    {
-      icon: FaSun,
-      title: "Perfect Climate",
-      description: "Ideal for year-round activities"
-    }
-  ];
-
-  const images = [
-    propertyImages.aerial,
-    propertyImages.landscape,
-    propertyImages.entrance,
-    propertyImages.farm
-  ];
 
   return (
     <motion.section 
-      className="min-h-screen bg-gradient-to-b from-white to-emerald-50"
+      className="min-h-screen relative bg-white"
       initial="hidden"
       animate="visible"
       viewport={{ once: true }}
     >
-      {/* Hero Section */}
-      <div className="relative overflow-hidden bg-emerald-800">
-        <div className="absolute inset-0">
-          <img 
-            src={propertyImages.aerial} 
-            alt="Property aerial view"
-            className="w-full h-full object-cover opacity-30"
+      {/* Green background section */}
+      <div className="fixed top-0 left-0 w-full h-[60px] md:h-[50vh] bg-emerald-900" />
+      
+      {/* White title container */}
+      <div className="relative z-10 py-16 md:py-20 xl:pt-40 xl:pb-20 px-4 md:px-8">
+        <div className="max-w-[1400px] flex flex-col gap-4 md:gap-16 mx-auto bg-white rounded-xl xl:-mt-12 xl:py-12 px-4 md:px-8">
+          <Title 
+            mainTitle="Summary" 
+            subtitle="Discover our property through comprehensive video tours showcasing the stunning river frontage and complete property overview"
+            className="text-emerald-900"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-emerald-900/80 to-emerald-800/80" />
-        </div>
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
-          <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              121 Hectares of Prime Rural Land
-            </h1>
-            <p className="text-emerald-100 text-lg md:text-xl leading-relaxed">
-              A rare opportunity to own a magnificent piece of Western Australia's countryside, 
-              just 25 minutes from Bridgetown.
-            </p>
-          </div>
-        </div>
-      </div>
 
-      {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        {/* Overview */}
-        <motion.div 
-          variants={fadeInUp}
-          className="bg-white rounded-2xl shadow-lg p-8 mb-16"
-        >
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <div>
-              <h2 className="text-3xl font-bold text-emerald-900 mb-6">Property Overview</h2>
-              <div className="prose prose-emerald max-w-none">
-                <p className="text-gray-600 text-lg leading-relaxed">
-                  This exceptional 121-hectare property presents a rare opportunity in Western Australia's 
-                  sought-after South West region. With its pristine natural setting and strategic location, 
-                  it offers the perfect balance of rural tranquility and accessibility.
-                </p>
-                <p className="text-gray-600 text-lg leading-relaxed mt-4">
-                  The gently undulating terrain provides excellent natural drainage and multiple potential 
-                  building sites. Natural water sources, including a dam and soak, ensure reliable water 
-                  supply throughout the year.
-                </p>
-              </div>
-            </div>
-            <div className="space-y-6">
-              <div className="flex justify-between items-center border-b border-gray-200 pb-4">
-                <span className="text-gray-600">Total Area</span>
-                <span className="font-semibold text-emerald-900">121 Hectares</span>
-              </div>
-              <div className="flex justify-between items-center border-b border-gray-200 pb-4">
-                <span className="text-gray-600">Location</span>
-                <span className="font-semibold text-emerald-900">25 mins to Bridgetown</span>
-              </div>
-              <div className="flex justify-between items-center border-b border-gray-200 pb-4">
-                <span className="text-gray-600">Road Access</span>
-                <span className="font-semibold text-emerald-900">Sealed Road Frontage</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-gray-600">Water Sources</span>
-                <span className="font-semibold text-emerald-900">Dam & Natural Soak</span>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Features */}
-        <motion.div variants={fadeInUp} className="mb-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature, index) => (
-              <div 
-                key={index}
-                className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300"
-              >
-                <div className="flex items-center space-x-4">
-                  <div className="bg-emerald-100 p-3 rounded-full">
-                    <feature.icon className="w-6 h-6 text-emerald-600" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-emerald-900">{feature.title}</h3>
-                    <p className="text-gray-600 mt-1">{feature.description}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Gallery */}
-        <motion.div variants={fadeInUp}>
-          <h2 className="text-3xl font-bold text-emerald-900 mb-8">Property Gallery</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {images.map((image, index) => (
-              <div 
-                key={index}
-                className="relative group cursor-pointer"
-                onClick={() => setSelectedImage(image)}
-              >
-                <div className="aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
-                  <img 
-                    src={image} 
-                    alt={`Property view ${index + 1}`}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          {/* Mobile Layout */}
+          <div className="block lg:hidden">
+            <div className="flex gap-2">
+              <div className="flex-1 relative aspect-square">
+                {Object.entries(summaryImages).slice(0, 3).map(([key, src], index) => (
+                  <img
+                    key={key}
+                    src={src}
+                    alt={key}
+                    className={`absolute top-0 left-0 w-full h-full object-cover rounded-lg ${index === 0 ? 'z-30' : index === 1 ? 'z-20 scale-95' : 'z-10 scale-90'}`}
                   />
-                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity duration-300" />
-                </div>
+                ))}
+                <button
+                  onClick={() => handleImageClick(0)}
+                  className="absolute inset-0 z-40 flex items-center justify-center bg-black/10 rounded-lg group hover:bg-black/50 transition-colors"
+                >
+                  <div className="text-center text-white">
+                    <ArrowsPointingOutIcon className="w-6 h-6 mx-auto mb-1" />
+                    <span className="text-sm font-medium">View ({allImages.length})</span>
+                  </div>
+                </button>
               </div>
+            </div>
+          </div>
+
+          {/* Desktop Layout */}
+          <div className="hidden lg:grid grid-cols-4 gap-6 place-items-center">
+            {/* First section images */}
+            {Object.entries(summaryImages).slice(0, 4).map(([key, src], index) => (
+              <motion.div
+                key={key}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="w-full aspect-square relative group overflow-hidden rounded-xl shadow-lg cursor-pointer flex items-center justify-center bg-gray-100"
+                onClick={() => handleImageClick(index)}
+              >
+                <img 
+                  src={src} 
+                  alt={key}
+                  className="w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+              </motion.div>
+            ))}
+
+            {/* First Video Block */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="col-span-1 row-span-2 flex items-center justify-center w-full h-full relative overflow-hidden rounded-xl"
+            >
+              <VideoPlayer
+                src={videoData[0].src}
+                title={videoData[0].title}
+              />
+            </motion.div>
+
+            {/* First special image */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="col-span-2 row-span-2 w-full aspect-square relative overflow-hidden rounded-xl cursor-pointer"
+              onClick={() => handleImageClick(4)}
+            >
+              <img 
+                src={summaryImages.img_river} 
+                alt="River"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+            </motion.div>
+
+            {/* Second section images */}
+            {Object.entries(summaryImages).slice(4, 8).map(([key, src], index) => (
+              <motion.div
+                key={key}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: (index + 5) * 0.1 }}
+                className="w-full aspect-square relative group overflow-hidden rounded-xl shadow-lg cursor-pointer flex items-center justify-center bg-gray-100"
+                onClick={() => handleImageClick(index + 5)}
+              >
+                <img 
+                  src={src} 
+                  alt={key}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+              </motion.div>
+            ))}
+
+            {/* Second Video Block */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="col-span-1 row-span-2 flex items-center justify-center w-full h-full relative overflow-hidden rounded-xl"
+            >
+              <VideoPlayer
+                src={videoData[1].src}
+                title={videoData[1].title}
+                
+              />
+            </motion.div>
+
+            {/* Second special image */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="col-span-1 row-span-2 w-full h-full relative overflow-hidden rounded-xl cursor-pointer"
+              onClick={() => handleImageClick(9)}
+            >
+              <img 
+                src={summaryImages.img_river} 
+                alt="River"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+            </motion.div>
+
+            {/* Remaining images */}
+            {Object.entries(summaryImages).slice(8).map(([key, src], index) => (
+              <motion.div
+                key={key}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: (index + 10) * 0.1 }}
+                className="w-full aspect-square relative group overflow-hidden rounded-xl shadow-lg cursor-pointer flex items-center justify-center bg-gray-100"
+                onClick={() => handleImageClick(index + 10)}
+              >
+                <img 
+                  src={src} 
+                  alt={key}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+              </motion.div>
             ))}
           </div>
-        </motion.div>
 
-        {/* Call to Action */}
-        <motion.div
-          variants={fadeInUp}
-          className="mt-16 text-center"
-        >
-          <a
-            href="#contact"
-            className="inline-block bg-emerald-600 text-white py-4 px-8 rounded-lg font-semibold hover:bg-emerald-700 transition-colors duration-300"
-          >
-            Contact for Inspection
-          </a>
-        </motion.div>
+          <ContactSection />
+        </div>
       </div>
 
-      {/* Image Modal */}
-      {selectedImage && (
-        <div 
-          className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4"
-          onClick={() => setSelectedImage(null)}
-        >
-          <div className="relative max-w-7xl w-full">
-            <img 
-              src={selectedImage} 
-              alt="Enlarged view"
-              className="w-full h-auto max-h-[90vh] object-contain rounded-lg"
-            />
-            <button 
-              className="absolute top-4 right-4 text-white text-xl bg-black bg-opacity-50 w-10 h-10 rounded-full flex items-center justify-center hover:bg-opacity-70"
-              onClick={() => setSelectedImage(null)}
+      {/* Fullscreen Modal */}
+      <AnimatePresence>
+        {selectedImageIndex !== null && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[101] bg-black/90 flex items-center justify-center"
+          >
+            <button
+              onClick={() => setSelectedImageIndex(null)}
+              className="absolute top-4 right-4 z-50 text-white hover:text-emerald-400 transition-colors"
             >
-              ×
+              <XMarkIcon className="w-8 h-8" />
             </button>
-          </div>
-        </div>
-      )}
+
+            <div className="w-full h-full flex items-center justify-center">
+              <Swiper
+                modules={[Pagination]}
+                pagination={{ clickable: true }}
+                loop={true}
+                initialSlide={selectedImageIndex}
+                className="w-full h-full flex items-center justify-center"
+              >
+                {allImages.map(({ key, src }) => (
+                  <SwiperSlide key={key} className="flex items-center justify-center p-4">
+                    <div className="relative w-full h-full flex items-center justify-center">
+                      <img
+                        src={src}
+                        alt={key}
+                        className="max-w-[90%] max-h-[85vh] object-contain rounded-lg"
+                      />
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <Footer />
     </motion.section>

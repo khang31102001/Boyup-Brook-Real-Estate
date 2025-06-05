@@ -12,7 +12,7 @@ export { default as Summary } from './Pages/Summary/Summary';
 
 // Photo related components 
 export { default as Discover } from './Pages/Photo/Discover';
-export { default as Video } from './Pages/Photo/Video';
+export { default as Video } from './Common/VideoPlayer';
 export { default as ImgGallery } from './Pages/Photo/ImgGallery';
 export { default as PropertyDetail } from './Pages/Photo/PropertyDetail';
 // Contact components

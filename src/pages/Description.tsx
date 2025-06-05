@@ -6,7 +6,10 @@ import Footer from '../components/Common/Footer';
 import { ScrollToTop } from '../components';
 import BounceCards from '../components/Pages/Photo/BounceCards';
 import { heroImages } from '../constants/images';
-import { FaTree, FaHome, FaWater, FaMountain, FaSeedling } from 'react-icons/fa';
+import { FaTree, FaHome, FaWater, FaMountain, FaSeedling, FaMapMarker, FaShare, FaRuler } from 'react-icons/fa';
+import { propertyData } from '../constants/data/propertyData';
+
+
 
 export default function Description() {
 
@@ -144,17 +147,32 @@ export default function Description() {
         />
 
         {/* Features Section */}
-        <div className="w-full mt-20">
-          <motion.h2 
-            className="text-3xl font-bold text-emerald-900 text-center mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            Property Features
-          </motion.h2>
-          
+        <div className="w-full mt-20 flex flex-col gap-16">
+          {propertyData.features.map((feature, index) => (
+            <div key={index} className='flex flex-col gap-8'>
+              <h3 className='text-3xl lg:text-4xl font-bold text-emerald-900 max-w-3xl mx-auto text-center'>{feature.title}</h3>
+              <h3 className='text-3xl lg:text-4xl px-4 py-1 border-2 cursor-pointer border-emerald-900 rounded-lg font-bold hover:bg-emerald-900 hover:text-white transition-all duration-300 text-emerald-900 max-w-3xl mx-auto text-center'>{feature.offer}</h3>
+              <p className='text-emerald-900 leading-relaxed text-justify text-lg max-w-4xl mx-auto  transition-all duration-300'>{feature.description}</p>
+              <div className="flex gap-4 flex-col justify-center w-fit max-w-3xl mx-auto">
+                <div className='flex gap-4 items-center '>
+                  <div className="flex w-fit items-center bg-green-50 text-green-700 px-4 py-2 rounded-md">
+                    <FaRuler className="mr-2" />
+                    <span>{propertyData.landSize}</span>
+                  </div>
+                
+                  <div className='flex items-center w-fit bg-green-50 text-green-700 px-4 py-2 rounded-md'>
+                    <FaMapMarker className="mr-2" />
+                    <span>{propertyData.location}</span>
+                    </div>
+                    <a href="tel:+0457230191" className="flex items-center w-fit bg-green-50 text-green-700 px-4 py-2 rounded-md">
+                      <FaShare className="mr-2" />
+                      Contact Owner
+                  </a>
+                </div>
+                </div>
+                  <img src={feature.img} alt={feature.title} className='w-full h-full object-cover rounded-lg aspect-video' />
+                </div>
+              ))}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((feature, idx) => (
               <motion.div

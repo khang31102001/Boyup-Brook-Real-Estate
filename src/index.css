@@ -126,3 +126,6 @@ main {
   scrollbar-color: #164e63 #f1f1f1;
 }
 
+.gmnoprint{
+  display: none !important;
+}

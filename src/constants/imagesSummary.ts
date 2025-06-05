@@ -25,12 +25,10 @@ import img_family from '../public/img/img_family.jpg'
 import img_family2 from '../public/img/img_family-2.jpg'
 import img_family3 from '../public/img/img_family-3.jpg'
 
-import john from '../public/img/john.jpg'
-import planView from '../public/img/PlanView.jpg'
-import landgateAerial from '../public/img/LandgateAerial.jpg'
-import ava from '../public/img/avar.png'
+
+
 // Export individual images
-export const heroImages = {
+export const summaryImages = {
   hero1,
   hero2,
   hero3,
@@ -52,30 +50,18 @@ export const heroImages = {
   img_family,
   img_family2,
   img_family3,
-  ava,
-  john,
-  planView,
-  landgateAerial
+  
 };
 
 // Export as array for slider
-export const heroSliderImages = [hero1, hero2, hero3, hero4, hero5, img_hill, img_hill1, img_hill2, img_hill3, img_river, img_river1, img_river2, img_river3, img_river4, img_asp, img_asp1, img_asp2, img_asp3, img_family, img_family2, img_family3, ava, john, planView, landgateAerial];
+export const heroSliderImages = [hero1, hero2, hero3, hero4, hero5, img_hill, img_hill1, img_hill2, img_hill3, img_river, img_river1, img_river2, img_river3, img_river4, img_asp, img_asp1, img_asp2, img_asp3, img_family, img_family2, img_family3];
 
 // Export all images as a single object
-const images = {
-  hero: heroImages,
+const imagesSummary = {
+  summary: summaryImages,
   sliders: {
     hero: heroSliderImages
   }
 };
 
-export default images;
-
-export const propertyImages = {
-  river: "/images/property/river-front.jpg",
-  hill: "/images/property/hill-views.jpg",
-  farm: "/images/property/farm-area.jpg",
-  aerial: "/images/property/aerial-view.jpg",
-  entrance: "/images/property/entrance.jpg",
-  landscape: "/images/property/landscape.jpg"
-}; 
+export default imagesSummary;
