@@ -18,6 +18,7 @@ export  const propertyData = {
         description: "This property is a rare opportunity to own a large, prime rural property in the heart of Western Australia's beautiful South West region. Located just 25 kilometres east of Bridgetown, this property offers a unique blend of natural beauty, historical significance, and potential for a wide range of agricultural and lifestyle pursuits",
         subtitle: "Plan view and location of the property",
         img: heroImages.landgateAerial,
+        img2: heroImages.planView,
       }
     ]
   };

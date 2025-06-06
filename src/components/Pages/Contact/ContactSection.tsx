@@ -132,12 +132,9 @@ export default function ContactSection() {
   }
 
   return (
-    <motion.section 
+    <section 
       id="contact" 
-      className="w-full  py-20"
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      transition={{ duration: 0.8 }}
+      className="w-full py-20"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16 items-center">
@@ -170,25 +167,25 @@ export default function ContactSection() {
                   </div>
                 </div>
 
-                <div className="flex items-center space-x-4 p-4 bg-emerald-600/50 rounded-xl">
+                <a href="tel:+0457230191" className="flex items-center space-x-4 p-4 bg-emerald-600/50 rounded-xl hover:bg-emerald-600/70 transition-all duration-300">
                   <div className="bg-emerald-600 p-3 rounded-full">
                     <FaPhone className="w-6 h-6" />
                   </div>
                   <div>
                     <h3 className="font-semibold">Phone</h3>
-                    <p className="text-emerald-200">+61 123 456 789</p>
+                    <p className="text-emerald-200">0457 230 191</p>
                   </div>
-                </div>
+                </a>
 
-                <div className="flex items-center space-x-4 p-4 bg-emerald-600/50 rounded-xl">
+                <a href="mailto:eaglescreensjr@gmail.com" className="flex items-center space-x-4 p-4 bg-emerald-600/50 rounded-xl hover:bg-emerald-600/70 transition-all duration-300">
                   <div className="bg-emerald-600 p-3 rounded-full">
                     <FaEnvelope className="w-6 h-6" />
                   </div>
                   <div>
                     <h3 className="font-semibold">Email</h3>
-                    <p className="text-emerald-200">contact@boyupbrook.com</p>
+                    <p className="text-emerald-200">eaglescreensjr@gmail.com</p>
                   </div>
-                </div>
+                </a>
 
                 <div className="flex items-center space-x-4 p-4 bg-emerald-600/50 rounded-xl">
                   <div className="bg-emerald-600 p-3 rounded-full">
@@ -294,6 +291,6 @@ export default function ContactSection() {
           </div>
         </motion.div>
       </div>
-    </motion.section>
+    </section>
   );
 }

@@ -74,7 +74,7 @@ const Loading = ({ progress }: LoadingProps) => {
           transition={{ delay: 0.6 }}
           className="absolute bottom-[-100px] left-6 text-white/60 text-sm md:text-base"
         >
-          Reliable land and development solutions for all your needs.
+          Contact the owner for more information.
         </motion.div>
       </div>
     </div>

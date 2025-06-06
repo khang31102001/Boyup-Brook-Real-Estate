@@ -5,7 +5,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
-  const isHome = location.pathname === '/' || location.pathname === '/summary';
+  const isHome = location.pathname === '/' || location.pathname === '/gallery';
 
   useEffect(() => {
     const handleScroll = () => {

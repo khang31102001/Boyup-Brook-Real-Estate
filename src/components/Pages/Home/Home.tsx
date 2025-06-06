@@ -132,9 +132,6 @@ export default function Home() {
       }
     }
   };
-
-
-
   const initialPosition = hasAnimated ? "up" : "center";
 
   return (

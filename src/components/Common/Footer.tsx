@@ -26,7 +26,7 @@ const Footer = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <div className='w-full max-w-md'>
-              <h3 className="text-h2 font-bold mb-4">Boyup Brook / Bridgetown</h3>
+              <h3 className="text-2xl lg:text-3xl font-bold mb-4">Boyup Brook / Bridgetown</h3>
               <p className=" block text-gray-300 mb-4">
               Riverlane property, full details, gallery, and contact.
             </p>

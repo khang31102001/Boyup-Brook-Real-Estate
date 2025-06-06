@@ -74,12 +74,13 @@ const PropertyDetail = () => {
               </motion.div>
             </div>
           </div>
-         
+          <div className='flex flex-col gap-4 mt-16'>
+            <h2 className="text-2xl font-bold text-emerald-900 border-y border-emerald-100 py-4">Could you please provide supplementary content for this particular section?</h2>
+          </div>
         </div>
-        <div className="h-fit col-span-1 bg-white rounded-lg shadow-lg p-6">
-          <div className="flex flex-col gap-4">
-            
-            {/* Agent Info Section */}
+            <div className="h-fit col-span-1 bg-white rounded-lg shadow-lg p-6">
+              <div className="flex flex-col gap-4">
+                {/* Agent Info Section */}
             <div className="flex flex-col gap-4">
               {/* Avatar */}
               <div className="w-36 h-36 mx-auto rounded-full overflow-hidden border-4 border-emerald-100 shadow flex-shrink-0">

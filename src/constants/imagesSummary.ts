@@ -25,10 +25,12 @@ import img_family from '../public/img/img_family.jpg'
 import img_family2 from '../public/img/img_family-2.jpg'
 import img_family3 from '../public/img/img_family-3.jpg'
 
-
+interface SummaryImagesType {
+  [key: string]: string;
+}
 
 // Export individual images
-export const summaryImages = {
+export const summaryImages: SummaryImagesType = {
   hero1,
   hero2,
   hero3,

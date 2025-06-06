@@ -1,424 +1,278 @@
+import { Footer } from "../components";
 import { motion, AnimatePresence } from "framer-motion";
-import { heroImages } from "../constants/images";
-import { PropertyDetail, ScrollToTop } from "../components";
-import Footer from "../components/Common/Footer";
-import { useEffect, useRef, useState } from "react";
-import { FaTimes, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import Title from "../components/Common/Title";
+import VideoPlayer from "../components/Common/VideoPlayer";
+import { videoData } from "../constants/video";
+import { summaryImages } from "../constants/imagesSummary";
+import { useState, useMemo } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination } from 'swiper/modules';
+import { Pagination } from 'swiper/modules';
+import { XMarkIcon } from '@heroicons/react/24/outline';
+import { ArrowsPointingOutIcon } from '@heroicons/react/24/outline';
 import type { Swiper as SwiperType } from 'swiper';
 import 'swiper/css';
-import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import Title from "../components/Common/Title";
-import { ArrowsPointingOutIcon } from "@heroicons/react/24/outline";
-import { videoData } from "../constants/video";
 
-// Media type definitions
-interface VideoMedia {
-  type: 'video';
-  src: string;
-  id: string;
-  title: string;
-  description: string;
+// Type definitions
+interface GridItem {
+  type: 'image' | 'special' | 'video';
+  key?: string;
+  videoIndex?: number;
+  span: string;
+  isSpecial?: boolean;
 }
 
-interface ImageMedia {
-  type: 'image';
+interface ImageItem {
+  key: string;
   src: string;
+  isSpecial: boolean;
 }
-
-type Media = VideoMedia | ImageMedia;
-
-// Combine images and videos for gallery
-const allMedia: Media[] = [
-  // Videos first
-  ...videoData.map(video => ({
-    type: 'video' as const,
-    src: video.src,
-    id: video.id,
-    title: video.title,
-    description: video.description
-  })),
-  // Then images
-  ...Object.values(heroImages).map(src => ({ 
-    type: 'image' as const, 
-    src 
-  }))
-];
-
-// Get first 3 images for thumbnails (excluding videos)
-const thumbnailImages = allMedia
-  .filter((media): media is ImageMedia => media.type === 'image')
-  .slice(0, 3);
 
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [showControls, setShowControls] = useState(false);
-  const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
-  const [_isVideoFullscreen, setIsVideoFullscreen] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const videoContainerRef = useRef<HTMLDivElement>(null);
-  const fullscreenVideoRef = useRef<HTMLVideoElement>(null);
-
-  // Reset video states when component unmounts or video changes
-  useEffect(() => {
-    return () => {
-      setIsPlaying(false);
-      setCurrentTime(0);
-      setDuration(0);
-      if (videoRef.current) {
-        videoRef.current.pause();
-        videoRef.current.currentTime = 0;
-      }
-      if (fullscreenVideoRef.current) {
-        fullscreenVideoRef.current.pause();
-        fullscreenVideoRef.current.currentTime = 0;
-      }
-    };
-  }, [selectedImage]);
-
   
-  // Handle video time updates
-  useEffect(() => {
-    const video = isFullscreen ? fullscreenVideoRef.current : videoRef.current;
-    if (!video) return;
-
-    const handleTimeUpdate = () => {
-      setCurrentTime(video.currentTime);
-    };
-
-    const handleLoadedMetadata = () => {
-      setDuration(video.duration);
-      setCurrentTime(0);
-    };
-
-    const handleEnded = () => {
-      setIsPlaying(false);
-      setCurrentTime(video.duration);
-    };
+  // Định nghĩa layout grid với các hình ảnh đặc biệt
+  const gridLayout = useMemo((): GridItem[] => {
+    const imageKeys = Object.keys(summaryImages);
     
-    video.addEventListener('timeupdate', handleTimeUpdate);
-    video.addEventListener('loadedmetadata', handleLoadedMetadata);
-    video.addEventListener('ended', handleEnded);
-    
-    return () => {
-      video.removeEventListener('timeupdate', handleTimeUpdate);
-      video.removeEventListener('loadedmetadata', handleLoadedMetadata);
-      video.removeEventListener('ended', handleEnded);
-    };
-  }, [isFullscreen, selectedImage]);
+    return [
+      // Row 1: 4 hình ảnh thường
+      { type: 'image', key: imageKeys[0], span: 'col-span-2 row-span-1' },
+      { type: 'video', videoIndex: 2, span: 'col-span-1 row-span-1' },
+      { type: 'image', key: imageKeys[2], span: 'col-span-1 row-span-2' },
+      { type: 'video', videoIndex: 0, span: 'col-span-1 row-span-2' },
+      { type: 'image', key: imageKeys[3], span: 'col-span-2 row-span-2' },
+      
+      // Row 2: Video + Special image (2x2) + 1 hình thường
+      { type: 'special', key: 'hero3', span: 'col-span-1 row-span-1' },
+      { type: 'image', key: imageKeys[4], span: 'col-span-1 row-span-1' },
+      
+      // Row 3: Tiếp tục với hình thường
+      {type: 'image', key: imageKeys[5], span: 'col-span-1 row-span-1'},
+      { type: 'image', key: imageKeys[6], span: 'col-span-1 row-span-2' },
+      { type: 'image', key: imageKeys[7], span: 'col-span-1 row-span-1' },
+      { type: 'image', key: imageKeys[8], span: 'col-span-2 row-span-1' },
+      
+      // Row 4: Video + Special image (2x3) + 1 hình thường
+      { type: 'video', videoIndex: 1, span: 'col-span-1 row-span-2' },
+      { type: 'special', key: 'img_asp1', span: 'col-span-1 row-span-1'},
+      { type: 'image', key: imageKeys[2], span: 'col-span-2 row-span-1' },
+      
+      // Row 5: Thêm hình ảnh đặc biệt ngang (3x1)
+      { type: 'special', key: imageKeys[9], span: 'col-span-1 row-span-2' },
+      { type: 'image', key: imageKeys[10], span: 'col-span-1 row-span-1' },
+      
+      // Row 6: Hình ảnh đặc biệt dọc (1x2) + 2 hình thường + 1 hình đặc biệt vuông (2x2)
+      { type: 'special', key: imageKeys[11], span: 'col-span-2 row-span-2' },
+      { type: 'image', key: imageKeys[12], span: 'col-span-1 row-span-1' },
+      { type: 'special', key: imageKeys[13], span: 'col-span-2 row-span-2' },
+      { type: 'video', videoIndex: 3, span: 'col-span-2 row-span-2' },
+      
+      // Row 7: Tiếp tục với các hình còn lại
+      { type: 'image', key: imageKeys[14], span: 'col-span-1 row-span-1' },
+      { type: 'video', videoIndex: 4, span: 'col-span-1 row-span-1' },
+      
+      // Các hình ảnh còn lại
+      ...imageKeys.slice(16).map((key): GridItem => ({
+        type: 'image', 
+        key, 
+        span: 'col-span-1 row-span-1'
+      }))
+    ];
+  }, []);
+  
+  // Tạo mảng tất cả hình ảnh để hiển thị trong modal
+  const allImages = useMemo((): ImageItem[] => {
+    return gridLayout
+      .filter((item): item is GridItem & { key: string } => 
+        (item.type === 'image' || item.type === 'special') && item.key !== undefined
+      )
+      .map((item): ImageItem => ({
+        key: item.key!,
+        src: summaryImages[item.key!],
+        isSpecial: item.isSpecial || false
+      }));
+  }, [gridLayout]);
 
-  // Format time for video progress
-  const formatTime = (time: number) => {
-    const minutes = Math.floor(time / 60);
-    const seconds = Math.floor(time % 60);
-    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-  };
-
-  // Handle mouse enter/leave for video container
-  const handleMouseEnter = () => {
-    setShowControls(true);
-  };
-
-  const handleMouseLeave = () => {
-    if (!isPlaying) return; // Keep controls visible if video is paused
-    setShowControls(false);
-  };
-
+  // Handle image click - Logic từ Gallery component
   const handleImageClick = (index: number) => {
     setSelectedImage(index);
     setIsFullscreen(true);
+    setActiveIndex(index);
   };
 
-  const handleFullscreenVideo = () => {
-    setIsVideoFullscreen(true);
-    setIsFullscreen(true);
-    setActiveIndex(selectedImage);
-
-    // Pause the current video
-    if (videoRef.current) {
-      const currentTime = videoRef.current.currentTime;
-      const wasPlaying = !videoRef.current.paused;
-      videoRef.current.pause();
-
-      // Transfer video state to fullscreen video
-      requestAnimationFrame(() => {
-        if (fullscreenVideoRef.current) {
-          fullscreenVideoRef.current.currentTime = currentTime;
-          if (wasPlaying) {
-            fullscreenVideoRef.current.play().then(() => {
-              setIsPlaying(true);
-            }).catch(() => {
-              setIsPlaying(false);
-            });
-          }
-        }
-      });
-    }
-  };
-
+  // Handle slide change - Logic từ Gallery component
   const handleSlideChange = (swiper: SwiperType) => {
     const newIndex = swiper.realIndex;
-    const prevIndex = activeIndex;
-    
-    // Update states
     setActiveIndex(newIndex);
     setSelectedImage(newIndex);
-    
-    // Reset video states
-    setIsPlaying(false);
-    setCurrentTime(0);
-    setDuration(0);
-
-    // Handle video elements
-    const currentVideo = isFullscreen ? fullscreenVideoRef.current : videoRef.current;
-    if (currentVideo) {
-      currentVideo.pause();
-      currentVideo.currentTime = 0;
-    }
-
-    // Check if we're switching between videos
-    const prevMedia = allMedia[prevIndex];
-    const newMedia = allMedia[newIndex];
-    if (prevMedia.type === 'video' && newMedia.type === 'video') {
-      // Give time for the new video element to be rendered
-      requestAnimationFrame(() => {
-        const newVideo = isFullscreen ? fullscreenVideoRef.current : videoRef.current;
-        if (newVideo) {
-          newVideo.currentTime = 0;
-          setCurrentTime(0);
-        }
-      });
-    }
   };
 
+  // Handle close fullscreen - Logic từ Gallery component
   const handleCloseFullscreen = () => {
-    // Pause and reset fullscreen video
-    if (fullscreenVideoRef.current) {
-      fullscreenVideoRef.current.pause();
-      fullscreenVideoRef.current.currentTime = 0;
-    }
-
-    // Reset states
     setIsFullscreen(false);
-    setIsVideoFullscreen(false);
-    setIsPlaying(false);
-    setCurrentTime(0);
-    
-    // If we're on a video in the main view, reset it
-    if (allMedia[selectedImage].type === 'video' && videoRef.current) {
-      videoRef.current.currentTime = 0;
-    }
+    // Không reset selectedImage và activeIndex như Gallery
   };
 
-  const togglePlay = () => {
-    const video = isFullscreen ? fullscreenVideoRef.current : videoRef.current;
-    if (!video) return;
-
-    if (isPlaying) {
-      video.pause();
-    } else {
-      video.play();
-    }
-    setIsPlaying(!isPlaying);
-  };
-
-  const handleVideoProgress = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.stopPropagation(); // Prevent event bubbling
+  const renderGridItem = (item: GridItem, index: number): JSX.Element | null => {
+    const baseDelay = index * 0.1;
     
-    const video = isFullscreen ? fullscreenVideoRef.current : videoRef.current;
-    if (!video) return;
-    
-    const newTime = parseFloat(e.target.value);
-    if (isNaN(newTime)) return;
-
-    try {
-      video.currentTime = newTime;
-      setCurrentTime(newTime);
-    } catch (error) {
-      console.error('Error setting video time:', error);
+    switch (item.type) {
+      case 'image':
+      case 'special':
+        if (!item.key) return null;
+        const imageIndex = allImages.findIndex(img => img.key === item.key);
+        if (imageIndex === -1) return null;
+        
+        return (
+          <motion.div
+            key={`${item.type}-${item.key}`}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: baseDelay }}
+            className={`w-full relative group overflow-hidden rounded-xl shadow-lg cursor-pointer flex items-center justify-center bg-gray-100 ${item.span}`}
+            onClick={() => handleImageClick(imageIndex)}
+          >
+            <img 
+              src={summaryImages[item.key]} 
+              alt={item.key}
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              draggable={false}
+            />
+            {item.isSpecial && (
+              <div className="absolute top-2 right-2 bg-emerald-500 text-white px-2 py-1 rounded-full text-xs font-medium">
+                Special
+              </div>
+            )}
+          </motion.div>
+        );
+        
+      case 'video':
+        if (item.videoIndex === undefined) return null;
+        return (
+          <motion.div
+            key={`video-${item.videoIndex}`}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: baseDelay }}
+            className={`flex items-center justify-center w-full h-full relative overflow-hidden rounded-xl ${item.span}`}
+          >
+            <VideoPlayer
+              src={videoData[item.videoIndex].src}
+              title={videoData[item.videoIndex]?.title}
+            />
+          </motion.div>
+        );
+        
+      default:
+        return null;
     }
   };
 
   return (
-    <section className='bg-white'>
-      <div className='max-w-7xl mx-auto py-20 px-4 md:px-8'>
-        <Title 
-          mainTitle="Gallery" 
-          subtitle="Explore our stunning property through photos and videos showcasing the natural beauty, facilities, and unique features"
-          className='text-emerald-900'
-        />
-        {/* Main Image and Thumbnails Container */}
-        <div className="flex flex-col lg:flex-row gap-4 mb-8 h-[400px] lg:h-[550px] xl:h-[650px] relative">
-          {/* Main large image/video */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            className="flex-1 lg:flex-[3] relative rounded-xl overflow-hidden cursor-pointer h-full group"
-          >
-            {allMedia[selectedImage].type === 'video' ? (
-              <div 
-                ref={videoContainerRef}
-                className="relative w-full h-full"
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-              >
-                <video
-                  ref={videoRef}
+    <motion.section 
+      className="min-h-screen relative bg-emerald-900"
+      initial="hidden"
+      animate="visible"
+      viewport={{ once: true }}
+    >
+      {/* White title container */}
+      <div className="relative z-10 py-16 md:py-20 xl:pt-40 xl:pb-20 px-4 md:px-8">
+        <div className="max-w-[1400px] flex flex-col gap-4 md:gap-16 mx-auto bg-white rounded-xl xl:-mt-12 xl:py-12 px-4 md:px-8">
+          <Title 
+            mainTitle="Gallery" 
+            subtitle="Explore our stunning property through photos and videos showcasing the natural beauty, facilities, and unique features"
+            className='text-emerald-900'
+          />
+          
+          {/* Mobile Layout */}
+          <div className="block lg:hidden">
+            {/* Hero Image */}
+            <div className="relative mb-6">
+              <div className="relative aspect-[4/3] rounded-xl overflow-hidden">
+                <img
+                  src={allImages[0]?.src}
+                  alt="Featured image"
                   className="w-full h-full object-cover"
-                  onClick={togglePlay}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                
+                {/* View Gallery Button */}
+                <button
+                  onClick={() => handleImageClick(0)}
+                  className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm text-emerald-900 px-4 py-2 rounded-full flex items-center gap-2 font-medium shadow-lg hover:bg-white transition-all"
                 >
-                  <source src={allMedia[selectedImage].src} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
+                  <ArrowsPointingOutIcon className="w-4 h-4" />
+                  <span>View Gallery</span>
+                </button>
 
-                {/* Video Controls Overlay */}
-                <div 
-                  className={`absolute inset-0 flex flex-col justify-between bg-gradient-to-t from-black/60 to-transparent transition-opacity duration-300 ${
-                    showControls || !isPlaying ? 'opacity-100' : 'opacity-0'
+                {/* Image Counter */}
+                <div className="absolute top-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm font-medium">
+                  {allImages.length} Photos
+                </div>
+
+               
+              </div>
+            </div>
+
+            {/* Image Grid */}
+            <div className="grid grid-cols-3 gap-3">
+              {allImages.slice(1, 7).map((image, index) => (
+                <motion.div
+                  key={image.key}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  onClick={() => handleImageClick(index + 1)}
+                  className={`relative aspect-square rounded-lg overflow-hidden cursor-pointer group ${
+                    index === 5 ? 'relative' : ''
                   }`}
                 >
-                  {/* Video Title */}
-                  <div className="p-4">
-                    <h3 className="text-white text-xl font-semibold">
-                      {allMedia[selectedImage].title}
-                    </h3>
-                  </div>
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleFullscreenVideo();
-                    }}
-                    className="hover:text-emerald-400 transition-colors ml-2 absolute top-4 right-4"
-                  >
-                    <ArrowsPointingOutIcon className="w-5 h-5" />
-                  </button>
-                  {/* Center Play Button */}
-                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                    <button
-                      onClick={togglePlay}
-                      className={`bg-white/80 p-4 rounded-full hover:bg-white transition-all transform hover:scale-110 pointer-events-auto ${
-                        showControls || !isPlaying ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
-                      }`}
-                    >
-                      {isPlaying ? (
-                        <FaTimes className="w-8 h-8 text-emerald-600" />
-                      ) : (
-                        <FaChevronRight className="w-8 h-8 text-emerald-600" />
-                      )}
-                    </button>
-                  </div>
-
-                  {/* Bottom Controls */}
-                  <div className={`p-4 space-y-2 transition-transform duration-300 ${
-                    showControls ? 'translate-y-0' : 'translate-y-full'
-                  }`}>
-                    {/* Progress Bar */}
-                    <div className="w-full flex items-center gap-2">
-                      <span className="text-white text-sm min-w-[40px]">
-                        {formatTime(currentTime)}
-                      </span>
-                      <input
-                        type="range"
-                        min="0"
-                        max={duration || 100}
-                        step="0.1"
-                        value={currentTime || 0}
-                        onChange={handleVideoProgress}
-                        onClick={(e) => e.stopPropagation()}
-                        className="w-full h-1 bg-white/30 rounded-lg appearance-none cursor-pointer accent-emerald-500 hover:h-2 transition-all"
-                        style={{
-                          background: `linear-gradient(to right, #10b981 ${(currentTime / duration) * 100}%, rgba(255,255,255,0.3) ${(currentTime / duration) * 100}%)`
-                        }}
-                      />
-                      <span className="text-white text-sm min-w-[40px]">
-                        {formatTime(duration)}
-                      </span>
-                      <div className="flex items-center gap-2">
-                       
-                        {/* Fullscreen Button */}
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleFullscreenVideo();
-                          }}
-                          className="hover:text-emerald-400 transition-colors ml-2"
-                        >
-                          <ArrowsPointingOutIcon className="w-5 h-5" />
-                        </button>
-                      </div>
+                  <img
+                    src={image.src}
+                    alt={image.key}
+                    className={`w-full h-full object-cover transition-transform duration-300 group-hover:scale-110 ${
+                      index === 5 ? 'brightness-50' : ''
+                    }`}
+                  />
+                  
+                  {/* Last image overlay */}
+                  {index === 5 && allImages.length > 7 && (
+                    <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/40">
+                      <span className="text-white text-xl font-bold">+{allImages.length - 6}</span>
+                      <span className="text-white text-xs mt-1">More Photos</span>
                     </div>
-                    
-                    
-                  </div>
+                  )}
+
+                  {/* Hover overlay */}
+                  <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Quick Stats */}
+            <div className="mt-6 bg-emerald-50 rounded-xl p-4">
+              <div className="flex items-center justify-between text-sm">
+                <div className="flex items-center gap-2 text-emerald-700">
+                  <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
+                  <span className="font-medium">Click to see more</span>
                 </div>
               </div>
-            ) : (
-              <img
-                src={allMedia[selectedImage].src}
-                className="w-full h-full object-cover"
-                alt="Gallery image"
-                onClick={() => {
-                  setIsFullscreen(true);
-                  setIsVideoFullscreen(false);
-                  setActiveIndex(selectedImage);
-                }}
-              />
-            )}
-           
-          </motion.div>
+            
+            </div>
+          </div>
 
-          {/* Right side thumbnails */}
-          <div className="flex-0 hidden lg:flex-1 lg:flex flex-col gap-3 h-full">
-            {thumbnailImages.map((image, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                onClick={() => handleImageClick(index + 2)}
-                className={`relative cursor-pointer rounded-xl overflow-hidden flex-1 group ${
-                  selectedImage === index + 2 ? 'ring-2 ring-emerald-500' : ''
-                }`}
-              >
-                <img
-                  src={image.src}
-                  className={`w-full h-full object-cover transition-transform duration-500 hover:scale-110 ${
-                    index === 2 ? 'brightness-50' : ''
-                  }`}
-                  alt={`Thumbnail ${index + 1}`}
-                />
-                {index === 2 ? (
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-white text-4xl font-bold">+{allMedia.length - 4}</span>
-                  </div>
-                ) : (
-                  <div className="absolute top-2 right-2 bg-black/50 text-white px-2 py-0.5 rounded-full text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-                    {index + 2} / {allMedia.length}
-                  </div>
-                )}
-              </motion.div>
-            ))}
+          {/* Desktop Layout - Enhanced Grid */}
+          <div className="hidden lg:grid grid-cols-4 gap-6 auto-rows-[300px]">
+            {gridLayout.map((item, index) => renderGridItem(item, index))}
           </div>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="bg-white"
-        >
-          <PropertyDetail />
-        </motion.div>
       </div>
 
-      {/* Fullscreen Gallery */}
+      {/* Fullscreen Modal - Logic từ Gallery component */}
       <AnimatePresence>
         {isFullscreen && (
           <motion.div
@@ -431,34 +285,19 @@ const Gallery = () => {
               className="absolute top-4 right-4 text-white p-2 rounded-full hover:bg-white/10 transition-colors z-[102]"
               onClick={handleCloseFullscreen}
             >
-              <FaTimes size={24} />
+              <XMarkIcon className="w-6 h-6" />
             </button>
+            
             <div className="absolute top-4 left-4 bg-white/10 text-white px-3 py-1 rounded-full text-sm font-medium z-[102]">
-              {activeIndex + 1} / {allMedia.length}
+              {activeIndex + 1} / {allImages.length}
             </div>
 
-            <button 
-              className="swiper-button-prev !z-[102] flex items-center justify-center"
-              aria-label="Previous slide"
-            >
-              <FaChevronLeft size={20} />
-            </button>
-            <button 
-              className="swiper-button-next !z-[102] flex items-center justify-center"
-              aria-label="Next slide"
-            >
-              <FaChevronRight size={20} />
-            </button>
-
             <Swiper
-              modules={[Navigation, Pagination]}
-              navigation={{
-                prevEl: '.swiper-button-prev',
-                nextEl: '.swiper-button-next',
-              }}
+              modules={[Pagination]}
               pagination={{
                 clickable: true,
                 el: '.swiper-pagination',
+                dynamicBullets: true,
               }}
               initialSlide={selectedImage}
               loop={true}
@@ -466,53 +305,18 @@ const Gallery = () => {
               centeredSlides={true}
               onSlideChange={handleSlideChange}
             >
-              {allMedia.map((media, index) => (
-                <SwiperSlide key={index} className="flex items-center justify-center">
+              {allImages.map(({ key, src }) => (
+                <SwiperSlide key={key} className="flex items-center justify-center">
                   <div className="w-full h-full flex items-center justify-center">
-                    {media.type === 'video' ? (
-                      <div 
-                        className="relative w-full h-full flex items-center justify-center"
-                        onMouseEnter={handleMouseEnter}
-                        onMouseLeave={handleMouseLeave}
-                      >
-                        <video
-                          ref={index === activeIndex ? fullscreenVideoRef : null}
-                          className="max-w-[95%] max-h-[90vh] object-contain mx-auto"
-                          onClick={togglePlay}
-                        >
-                          <source src={media.src} type="video/mp4" />
-                          Your browser does not support the video tag.
-                        </video>
-
-                        {/* Fullscreen Video Controls - Only Play/Pause */}
-                        {index === activeIndex && (
-                          <div 
-                            className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${
-                              showControls || !isPlaying ? 'opacity-100' : 'opacity-0'
-                            }`}
-                          >
-                            <button
-                              onClick={togglePlay}
-                              className={`bg-white/80 p-6 rounded-full hover:bg-white transition-all transform hover:scale-110 ${
-                                showControls || !isPlaying ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
-                              }`}
-                            >
-                              {isPlaying ? (
-                                <FaTimes className="w-10 h-10 text-emerald-600" />
-                              ) : (
-                                <FaChevronRight className="w-10 h-10 text-emerald-600" />
-                              )}
-                            </button>
-                          </div>
-                        )}
-                      </div>
-                    ) : (
+                    <div className="relative w-full h-full flex items-center justify-center">
                       <img
-                        src={media.src}
+                        src={src}
+                        alt={key}
                         className="max-w-[95%] max-h-[90vh] object-contain mx-auto"
-                        alt={`Gallery item ${index + 1}`}
+                        draggable={false}
                       />
-                    )}
+                      
+                    </div>
                   </div>
                 </SwiperSlide>
               ))}
@@ -522,9 +326,8 @@ const Gallery = () => {
         )}
       </AnimatePresence>
 
-      <ScrollToTop />
       <Footer />
-    </section>
+    </motion.section>
   );
 };
 
