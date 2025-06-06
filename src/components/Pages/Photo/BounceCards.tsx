@@ -177,7 +177,7 @@ export default function BounceCards({
               className="max-h-[70vh] w-auto rounded-xl shadow-2xl object-contain"
             />
             <button
-              className="absolute top-2 right-2 bg-gray-200 hover:bg-gray-400 text-gray-700 hover:text-white rounded-full p-2"
+              className="absolute top-2 right-6 bg-gray-200 hover:bg-gray-400 text-gray-700 hover:text-white rounded-full p-2"
               onClick={() => setSelectedIndex(null)}
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -188,7 +188,7 @@ export default function BounceCards({
             {images.length > 1 && (
               <>
                 <button
-                  className="absolute left-2 top-1/2 -translate-y-1/2 bg-gray-200 hover:bg-gray-400 text-gray-700 hover:text-white rounded-full p-2"
+                  className="absolute left-6 top-1/2 -translate-y-1/2 bg-gray-200 hover:bg-gray-400 text-gray-700 hover:text-white rounded-full p-2"
                   onClick={() => setSelectedIndex((selectedIndex - 1 + images.length) % images.length)}
                 >
                   <svg width={24} height={24} fill="none" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7"/></svg>

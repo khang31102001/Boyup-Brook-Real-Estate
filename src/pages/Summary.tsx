@@ -529,9 +529,8 @@ const Summary = () => {
                 dynamicBullets: true,
               }}
               navigation={{
-                
-                prevEl: '.custom-button-prev',
                 nextEl: '.custom-button-next',
+                prevEl: '.custom-button-prev',
               }}
               initialSlide={selectedImage}
               loop={true}
