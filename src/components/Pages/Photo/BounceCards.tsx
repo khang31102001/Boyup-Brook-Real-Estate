@@ -194,7 +194,7 @@ export default function BounceCards({
                   <svg width={24} height={24} fill="none" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7"/></svg>
                 </button>
                 <button
-                  className="absolute right-2 top-1/2 -translate-y-1/2 bg-gray-200 hover:bg-gray-400 text-gray-700 hover:text-white rounded-full p-2"
+                  className="absolute right-6 top-1/2 -translate-y-1/2 bg-gray-200 hover:bg-gray-400 text-gray-700 hover:text-white rounded-full p-2"
                   onClick={() => setSelectedIndex((selectedIndex + 1) % images.length)}
                 >
                   <svg width={24} height={24} fill="none" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/></svg>
