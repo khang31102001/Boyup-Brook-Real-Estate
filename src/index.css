@@ -60,12 +60,12 @@ h5,
 h6 {
   overflow-wrap: break-word;
 }
-.custom-button-next{
+.custom-button-prev{
   left:10px;
   z-index: 10;
 
 }
-.custom-button-prev{
+.custom-button-next{
   right: 10px;
   z-index: 10;
 }

@@ -5,7 +5,7 @@ import Footer from "../components/Common/Footer";
 import { useEffect, useRef, useState } from "react";
 import { FaTimes, FaPause, FaPlay } from "react-icons/fa";
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination } from 'swiper/modules';
+import { Pagination, Navigation } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -522,11 +522,16 @@ const Summary = () => {
             </div>
 
             <Swiper
-              modules={[Pagination]}
+              modules={[Pagination, Navigation]}
               pagination={{
                 clickable: true,
                 el: '.swiper-pagination',
                 dynamicBullets: true,
+              }}
+              navigation={{
+                
+                prevEl: '.custom-button-prev',
+                nextEl: '.custom-button-next',
               }}
               initialSlide={selectedImage}
               loop={true}
@@ -584,6 +589,20 @@ const Summary = () => {
                   </div>
                 </SwiperSlide>
               ))}
+               <>
+                <button
+                  className="custom-button-prev absolute left-2 top-1/2 -translate-y-1/2 bg-gray-200 hover:bg-gray-400 text-emerald-700 hover:text-white rounded-full p-2"
+                  onClick={() => {}}
+                >
+                  <svg width={24} height={24} fill="none" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7"/></svg>
+                </button>
+                <button
+                  className="custom-button-next absolute right-2 top-1/2 -translate-y-1/2 bg-gray-200 hover:bg-gray-400 text-emerald-700 hover:text-white rounded-full p-2"
+                  onClick={() => {}}
+                >
+                  <svg width={24} height={24} fill="none" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/></svg>
+                </button>
+              </>
               <div className="swiper-pagination"></div>
             </Swiper>
           </motion.div>
