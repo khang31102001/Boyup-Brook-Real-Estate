@@ -225,7 +225,7 @@ const Summary = () => {
 
   return (
     <section className='bg-white'>
-      <div className='max-w-7xl mx-auto py-12 md:py-20 px-4 md:px-8'>
+      <div className='max-w-7xl mx-auto py-16 md:py-20 xl:pt-40 xl:pb-20 px-4 md:px-8'>
         <div className="mb-12 md:mb-16">
         <Title 
             mainTitle="Summary" 
